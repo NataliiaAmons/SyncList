@@ -1,0 +1,66 @@
+.header{
+    height: 85px;
+
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    flex-direction: row;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.left-section{
+    flex: 1;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.middle-section{
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3vw;
+}
+
+.right-section{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-image{
+    height:65px;
+}
+
+.profile-picture{
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 12px;
+}
+
+.username-header{
+    font-size: 22px;
+}
+
+
+
+
+@media (max-width: 1200px){
+    .logo-image{
+        height:50px;
+    }
+    .middle-section{
+        gap: 2vw;
+    }
+    .header-link{
+        font-size: 22px;
+    }
+
+}
