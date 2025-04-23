@@ -4,34 +4,35 @@
     <meta charset="UTF-8"></head>
       <title>Purchase</title>
 
+      <link rel="stylesheet" href="styles\color_scheme.css">
       <link rel="stylesheet" href="styles/header.css">
-      <link rel="stylesheet" href="styles/purchase list.css">
+      <link rel="stylesheet" href="styles/purchase_list.css">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body class = "bg-neutral">
 
-    <div class = "header">
+    <div class = "header bg-support border-bottom-gray">
 
       <div class = "left-section">
-        <img class="logo-image" src="images\logo.png" alt="logo"> 
+        <img class="logo-image" src="images\synclist-high-resolution-logo.png" alt="logo"> 
       </div>
 
       <div class = "middle-section">
-        <p class="header-link">All lists</p>
-        <p class="header-link">Claimed tasks</p>
-        <p class="header-link">Upcoming</p>
-        <p class="header-link">Friends</p>
+        <p class="header-link text-dark">All lists</p>
+        <p class="header-link text-dark">Claimed tasks</p>
+        <p class="header-link text-dark">Upcoming</p>
+        <p class="header-link text-dark">Friends</p>
       </div>
 
       <div class = "right-section">
         <img class="profile-picture" src="images\user-profile-picture.jpg" alt="profile picture">
-        <p class="username-header">Nataliia</p>
+        <p class="username-header text-dark">Nataliia</p>
       </div>
     </div>
 
-    <div class = "purchase-header">
+    <div class = "purchase-header bg-light border-gray text-dark">
       <p class = "purchase-name">Shopping list</p>
       <div class = "purchase-due-date">
         <p>Due date</p>
@@ -44,15 +45,15 @@
 
     <div class = "purchase-tasks">
       <ul class = "all-tasks">
-        <div class="all-tasks-header">
-          <span class = "list-name">All products</span>
+        <div class="all-tasks-header bg-secondary border-gray">
+          <span class = "list-name text-dark">All products</span>
           <button class="add-product-button">
             <img>
             Add product
           </button>
         </div>
 
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
@@ -65,7 +66,7 @@
           <p class = "li-notes">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
         </li>
       
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
@@ -78,7 +79,7 @@
           <p class = "li-notes">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
         </li>
 
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
@@ -91,7 +92,7 @@
           <p class = "li-notes">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
         </li>
 
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
@@ -104,7 +105,7 @@
           <p class = "li-notes">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
         </li>
 
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
@@ -117,7 +118,7 @@
           <p class = "li-notes">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
         </li>
 
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
@@ -133,11 +134,11 @@
       </ul>
 
       <ul class = "claimed-tasks">
-        <div class="claimed-tasks-header">
-          <span class = "list-name">Claimed products</span>
+        <div class="claimed-tasks-header bg-primary border-gray">
+          <span class = "list-name text-neutral">Claimed products</span>
         </div>
 
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
@@ -150,7 +151,7 @@
           <p class = "li-notes">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
         </li>
 
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
@@ -163,7 +164,7 @@
           <p class = "li-notes">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
         </li>
 
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
@@ -176,7 +177,7 @@
           <p class = "li-notes">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
         </li>
 
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
@@ -189,7 +190,7 @@
           <p class = "li-notes">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
         </li>
 
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
@@ -202,7 +203,7 @@
           <p class = "li-notes">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
         </li>
 
-        <li class = "container">
+        <li class = "container bg-light border-gray">
           <div class = "li-label-and-checkbox">
             <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
             <label for="task1-checkbox">Milk</label>
