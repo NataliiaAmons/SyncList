@@ -92,3 +92,7 @@
 .text-neutral{
     color: var(--neutral-color);
 }
+
+.text-light{
+    color: var(--light-color);
+}

@@ -1,4 +1,4 @@
-p{
+p, label, input, textarea, button{
     font-family: "Quicksand", sans-serif;
     font-size: 25px;
     margin: 0px;
