@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"></head>
+        <title>Sign up</title>
+        
+        <link rel="stylesheet" href="styles/color-scheme.css">
+        <link rel="stylesheet" href="styles/header.css">
+        <link rel="stylesheet" href="styles/sign-up-and-log-in.css">
+
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    </head>
+    <body class="bg-light">
+        <form class = "container form-fields-flex bg-light border-gray shadow-neutral-corner">
+            <div class = "header bg-support border-bottomgray">
+                <img class="logo-image" src="images/synclist-high-resolution-logo.png" alt="logo">
+            </div>
+            <h1 class="text-dark">Sign up</h1>
+            <input type = "text" class="border-gray text-dark" id = "fname" name = "fname" placeholder = "First name">
+
+            <input type = "text" class="border-gray text-dark" id = "lname" name = "lname" placeholder = "Last name">
+
+            <input type = "text" class="border-gray text-dark" id = "uname" name = "uname" placeholder = "Username">
+
+            <input type = "email" class="border-gray text-dark" id = "email" name = "email" placeholder = "Email">
+        
+            <input type = "password" class="border-gray text-dark" id = "pass" name = "pass" placeholder = "Create password">
+
+            <input type = "password" class="border-gray text-dark" id = "cpass" name = "cpass" placeholder = "Confirm password">
+
+            <button class="bg-primary text-light" type="submit">Create an account</button> 
+            
+            <p class="sing-up-text text-dark">
+                Already have an account? 
+                <a class="text-primary" href="log-in.html">
+                    Log in
+                </a>
+            </p>
+        </form>
+    </body>
+</html>

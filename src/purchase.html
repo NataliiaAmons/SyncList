@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"></head>
+      <title>Purchase</title>
+
+      <link rel="stylesheet" href="styles/color-scheme.css">
+      <link rel="stylesheet" href="styles/header.css">
+      <link rel="stylesheet" href="styles/purchase-list.css">
+      <link rel="stylesheet" href="styles/add-product-form.css">
+
+      <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  </head>
+  <body class = "bg-neutral">
+
+    <div class = "header bg-support border-bottom-gray">
+
+      <div class = "left-section">
+        <img class="logo-image" src="images\synclist-high-resolution-logo.png" alt="logo"> 
+      </div>
+
+      <div class = "middle-section">
+        <p class="header-link text-dark">All lists</p>
+        <p class="header-link text-dark">Claimed tasks</p>
+        <p class="header-link text-dark">Upcoming</p>
+        <p class="header-link text-dark">Friends</p>
+      </div>
+
+      <div class = "right-section">
+        <img class="profile-picture" src="images\user-profile-picture.jpg" alt="profile picture">
+        <p class="username-header text-dark">Nataliia</p>
+      </div>
+    </div>
+
+    <div class = "purchase-header bg-light border-gray text-dark">
+      <p class = "purchase-name">Shopping list</p>
+      <div class = "purchase-due-date">
+        <p>Due date</p>
+        <input type="date">
+      </div>
+      <div class = "purchase-members">
+        <p> 5 members</p>
+      </div>
+    </div>
+
+    <div class = "purchase-tasks">
+      <ul class = "all-tasks">
+        <div class="all-tasks-header bg-secondary border-gray">
+          <span class = "list-name text-dark">All products</span>
+          <button class="add-product-button" onclick="openPopupForm()">
+            <img>
+            Add product
+          </button>
+        </div>
+
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Bottled Water (24x)</label>
+          </div>
+          <img class = "li-picture" src="images\test_products\skiathos-greece-062624-plastic-bottled-600nw-2493938399.webp">
+          <p class = "li-notes">Grab a mix of still and sparkling. The small ones are fine if that's all they have, but aim for the regular size. Make sure we have enough for people to take extras home if they want.</p>
+        </li>
+      
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Coffee & Tea</label>
+          </div>
+          <div class="claimed-by-info">
+            <img class="claimed-by-profile-picture" src="images\user-profile-picture.jpg" alt="profile picture">
+            <span>Jordan</span>
+          </div>
+          <img class = "li-picture" src="images\test_products\coffee.jpg">
+          <p class = "li-notes">Regular coffee is essential. Also grab some decaf, and ideally include a caffeine-free tea (like chamomile or mint) for later in the day. Don't forget sugar and stirrers if you can.</p>
+        </li>
+
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Disposable Cups</label>
+          </div>
+          <div class="claimed-by-info">
+            <img class="claimed-by-profile-picture" src="images\user-profile-picture.jpg" alt="profile picture">
+            <span>Taylor</span>
+          </div>
+          <img class = "li-picture" src="images\test_products\cups.jpg">
+          <p class = "li-notes">Hot and cold. Big enough for a full drink, not those tiny ones.</p>
+        </li>
+
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Plates & Cutlery</label>
+          </div>
+          <div class="claimed-by-info">
+            <img class="claimed-by-profile-picture" src="images\user-profile-picture.jpg" alt="profile picture">
+            <span>Casey</span>
+          </div>
+          <img class = "li-picture" src="images\test_products\vertical-image-of-a-wooden-box-with-cutlery-next-to-couple-of-stacks-of-white-plates-for-catering-on-a-table-ready-for-buffet-ptp98e.jpg">
+          <p class = "li-notes">Enough for 30–35 people. If there's a compostable option, go for it. Otherwise, strong plastic is fine.</p>
+        </li>
+
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Napkins</label>
+          </div>
+          <p class = "li-notes">	Any kind works.</p>
+        </li>
+
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Chips & Dips</label>
+          </div>
+          <img class = "li-picture" src="images\test_products\Chips_and_dips_(cropped).jpg">
+          <p class = "li-notes">Try to get a variety—maybe something spicy, something mild, and something with a twist (like beet hummus). Avoid anything that needs heating.</p>
+        </li>
+
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Hand Sanitizer</label>
+          </div>
+          <div class="claimed-by-info">
+            <img class="claimed-by-profile-picture" src="images\user-profile-picture.jpg" alt="profile picture">
+            <span>Casey</span>
+          </div>
+          <p class = "li-notes">Two bottles max. Nothing fancy.</p>
+        </li>
+
+      </ul>
+
+      <ul class = "claimed-tasks">
+        <div class="claimed-tasks-header bg-primary border-gray">
+          <span class = "list-name text-neutral">Claimed products</span>
+        </div>
+
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Fresh Fruit Tray</label>
+          </div>
+          <img class = "li-picture" src="images\test_products\fruit_tray.jpg">
+          <p class = "li-notes">Pre-sliced is best so we don’t have to prep on-site. Include grapes, strawberries, and melons if available.</p>
+        </li>
+
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Sandwich Platter</label>
+          </div>
+          <img class = "li-picture" src="images\test_products\sandwiches.jpg">
+          <p class = "li-notes">Half veggie, half meat options. Please double-check for any labeled allergens. If it’s pre-wrapped, even better. We’ll need enough for 30 people.</p>
+        </li>
+
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Dessert Tray</label>
+          </div>
+          <img class = "li-picture" src="images\test_products\deserts.jpg">
+        </li>
+
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Ice (2 bags)</label>
+          </div>
+          <img class = "li-picture" src="images\test_products\ice_bags.jpg">
+          <p class = "li-notes">Just grab from the gas station freezer on your way in.</p>
+        </li>
+
+        <li class = "container bg-light border-gray">
+          <div class = "li-label-and-checkbox">
+            <input class = "checkbox" type="checkbox" id="task1-checkbox" name = "task1-checkbox">
+            <label for="task1-checkbox">Trash Bags</label>
+          </div>
+          <p class = "li-notes">	Big, sturdy ones. 30–40 gallon. Black bags, not the see-through kind. We’ll probably need at least 4–5 total.</p>
+        </li>
+
+        
+      </ul>
+     
+    </div>
+
+
+    <div class = "add-product-popup" id="add-product-popup">
+      <form class = "add-product-form bg-light border-gray">
+        <input class = "add-prod-name" type="text" placeholder="Product name" name = "add-prod-name" required>
+        <div class="add-prod-img">
+          <label for="add-prod-img">Add product image</label>
+          <input type="file" name="add-prod-img">
+        </div>
+        <textarea class = "add-prod-notes" name="add-prod-notes" placeholder="Notes" rows="3"></textarea>
+        <button class="submit-btn bg-primary text-light" type="submit" name="add-prod-submit-btn">Add product</button>
+        <button class="cancel-btn" onclick="closePopupForm()" type="button" name="add-prod-cancel-btn">Cancel</button>
+      </form>
+    </div>
+
+   
+  </body>
+  <script src="scripts\add-product-form.js"></script>
+</html>
+    
+    
