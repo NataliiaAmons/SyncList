@@ -1,44 +1,75 @@
-body {
-  background-color: rgb(224, 224, 224);
-  margin:0;
-  display:flex;
-  height:100vh;
-  align-items:center;
+p, label, input, button, h1{
+  font-family: "Quicksand", sans-serif;
+  font-size: 25px;
+  margin: 0px;
 }
 
 .container {
-    width: 25vw;
-    margin: 0 auto;
-    overflow: auto;
-}
-
-h1 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 70px 50px;
+  border-radius: 15px;
   text-align: center;
-  margin-left: 20px;
-  margin-top: 0;
+  min-width: 450px;
 }
 
+/* Header with logo*/
+.header {
+  align-items: center;
+  justify-content: center;
+}
+
+/* Flex element*/
+.form-fields-flex{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* From name */
+h1 {
+  font-size: 40px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+
+
+
+/* Text input fields*/
 input[type=text], input[type=password], input[type=email] {
   width: 100%;
   padding: 12px 20px;
-  margin-bottom: 8px;
   display: inline-block;
-  border: 1px solid #ccc;
+  border-radius: 10px;;
   box-sizing: border-box;
 }
 
+input::placeholder {
+  color: var(--dark-gray-color);
+}
 
+/* "Remember me" checkbox*/
+.checkbox-container{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* "Log in" button*/
 button {
-    background-color: rgb(48, 104, 224);
-    border:none;
-    height: 40px;
+    padding: 10px 0px;
+    margin-bottom: 10px;
     width: 100%;
-    margin-top: 5%;
-    margin-bottom: 15%;
-    border-radius: 3px;
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
+    border:none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
     transition: opacity 0.15s;
     
 }
@@ -49,4 +80,19 @@ button:hover{
 
 button:active{
     opacity: 0.3;
+}
+
+
+/*"Sing up" text and link*/
+.sing-up-text {
+  font-size: 19px;
+  margin-top: 10px;
+}
+
+.sing-up-text a {
+  text-decoration: none;
+}
+
+.sing-up-text a:hover{
+  text-decoration: underline;
 }

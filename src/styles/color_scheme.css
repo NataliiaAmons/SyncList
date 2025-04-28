@@ -7,6 +7,7 @@
     --dark-color: #1d3557;
     --light-color: #ffffff;
     --gray-color: #ced4da;
+    --dark-gray-color: #939699;
   }
 
 
@@ -95,4 +96,22 @@
 
 .text-light{
     color: var(--light-color);
+}
+
+.text-gray{
+    color: var(--gray-color);
+}
+
+.text-dark-gray{
+    color: var(--dark-gray-color);
+}
+
+
+/* Shadows */
+.shadow-neutral-corner{
+    box-shadow: 5px 5px 10px var(--neutral-color);
+}
+
+.shadow-neutral-bottom{
+    box-shadow: 5px 0px 10px var(--neutral-color);
 }
