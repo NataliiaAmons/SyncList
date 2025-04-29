@@ -12,7 +12,6 @@ const users = [
     }
 ]
 
-
 // Changes visibility for password fields
 function changeVisibility(elementId){
     const container = document.getElementById(elementId);
@@ -33,14 +32,21 @@ function changeVisibility(elementId){
 // LOG IN: Checks if input is correct
 document.getElementById("log-in-form").addEventListener("submit", function(event){
 
-    const email = document.getElementById("email").value;
+    const textInput = document.getElementById("email-or-usern").value.trim();
     const password = document.getElementById("pass").value;
 
     const error = document.getElementById("error");
 
     error.classList.add("hidden");
 
-    const getUser = users.find(user => user.email === email);
+    let getUser;
+    // check if input is email or username
+    if (isValidEmail(textInput)) {
+        getUser = users.find(user => user.email === textInput);
+    }
+    else {
+        getUser = users.find(user => user.username === textInput);
+    }
 
     if (!getUser || password != getUser.password) {
         event.preventDefault();
@@ -52,3 +58,8 @@ document.getElementById("log-in-form").addEventListener("submit", function(event
 // LOG IN: Reloads page with different url
 document.getElementById("log-in-form").action = "purchase.html";
 
+// Checking if email is valid
+function isValidEmail (text){
+    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    return emailRegex.test(text);
+}
