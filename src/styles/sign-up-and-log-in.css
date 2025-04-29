@@ -98,3 +98,29 @@ button:active{
 .sing-up-text a:hover{
   text-decoration: underline;
 }
+
+
+
+.password-container{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-visibility-icon {
+  position: absolute;
+  right: 15px; 
+  transition: color 0.15s;
+}
+
+.password-visibility-icon:hover {
+  color: var(--dark-gray-color); 
+}
+
+.hidden {
+  display: none !important;
+}
+
+.inline {
+  display: inline !important;
+}
