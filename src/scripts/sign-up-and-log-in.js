@@ -52,6 +52,17 @@ document.getElementById("log-in-form").addEventListener("submit", function(event
         event.preventDefault();
         error.classList.toggle("hidden");
         error.innerText = "Wrong email or password";
+
+        // changing input border colors
+        const container = document.getElementById("log-in-form");
+        const textElement = container.querySelector("#email-or-usern");
+        const passElement = container.querySelector("#pass");
+
+        textElement.classList.remove("border-gray");
+        textElement.classList.add("border-accent");
+        passElement.classList.remove("border-gray");
+        passElement.classList.add("border-accent");
+
     }
 })
 
@@ -63,3 +74,7 @@ function isValidEmail (text){
     const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     return emailRegex.test(text);
 }
+
+
+
+
