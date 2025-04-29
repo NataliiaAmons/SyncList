@@ -16,17 +16,17 @@ const users = [
 // Changes visibility for password fields
 function changeVisibility(elementId){
     const container = document.getElementById(elementId);
-    const inputElement = container.querySelector("input")
-    const eye = container.querySelector(".fa-eye")
-    const eye_slash = container.querySelector(".fa-eye-slash")
+    const inputElement = container.querySelector("input");
+    const eye = container.querySelector(".fa-eye");
+    const eye_slash = container.querySelector(".fa-eye-slash");
 
     isPassword = inputElement.type==="password";
 
-    inputElement.type = isPassword ?  "text" : "password"
-        eye.classList.toggle("hidden");
-        eye.classList.toggle("inline");
-        eye_slash.classList.toggle("hidden");
-        eye_slash.classList.toggle("inline");
+    inputElement.type = isPassword ?  "text" : "password";
+    eye.classList.toggle("hidden");
+    eye.classList.toggle("inline");
+    eye_slash.classList.toggle("hidden");
+    eye_slash.classList.toggle("inline");
       
 }
 
@@ -40,16 +40,15 @@ document.getElementById("log-in-form").addEventListener("submit", function(event
 
     error.classList.add("hidden");
 
-    const getUser = users.find(user => user.email === email)
+    const getUser = users.find(user => user.email === email);
 
     if (!getUser || password != getUser.password) {
         event.preventDefault();
         error.classList.toggle("hidden");
         error.innerText = "Wrong email or password";
     }
-    else {
-        window.open("purchase.html");
-    }
-
 })
+
+// LOG IN: Reloads page with different url
+document.getElementById("log-in-form").action = "purchase.html";
 
