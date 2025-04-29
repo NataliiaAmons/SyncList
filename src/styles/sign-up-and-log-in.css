@@ -19,6 +19,8 @@ p, label, input, button, h1{
 .header {
   align-items: center;
   justify-content: center;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
 }
 
 /* Flex element*/
