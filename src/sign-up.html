@@ -12,33 +12,34 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     </head>
     <body class="bg-light">
-        <form class = "container form-fields-flex bg-light border-gray shadow-neutral-corner">
+        <form id="sing-up-form" class = "container form-fields-flex bg-light border-gray shadow-neutral-corner">
             <div class = "header bg-support border-bottomgray">
                 <img class="logo-image" src="images/synclist-high-resolution-logo.png" alt="logo">
             </div>
             
             <h1 class="text-dark">Sign up</h1>
 
-            <div>
+            <div id="fname-container" class="form-field">
                 <label class= "field-label" for="fname">First name *</label>
-                <input type = "text" class="border-gray text-dark" id = "fname" name = "fname" placeholder = "First name">
+                <input type = "text" class="border-gray text-dark" id = "fname" name = "fname" placeholder = "First name" required>
+                <p id="fname-error" class="hidden error text-accent"></p>
             </div>
 
-            <div>
+            <div class="form-field">
                 <label class= "field-label" for="lname">Last name *</label>
                 <input type = "text" class="border-gray text-dark" id = "lname" name = "lname" placeholder = "Last name">
             </div>
 
-            <div>
+            <div class="form-field"> 
                 <label class= "field-label" for="uname">Username *</label>
                 <input type = "text" class="border-gray text-dark" id = "uname" name = "uname" placeholder = "Username">
             </div>
-            <div>
+            <div class="form-field">
                 <label class= "field-label" for="email">Email *</label>
                 <input type = "email" class="border-gray text-dark" id = "email" name = "email" placeholder = "Email">
             </div>
 
-            <div>
+            <div class="form-field">
                 <label class= "field-label" for="pass">Password *</label>
                 <div class="password-container" id="password-container-pass">
                     
@@ -46,9 +47,9 @@
                     <i class="inline password-visibility-icon text-dark fa-regular fa-eye" id ="fa-eye-pass" onclick="changeVisibility('password-container-pass')"></i>
                     <i class="hidden password-visibility-icon text-dark fa-regular fa-eye-slash" id="fa-eye-slash-pass" onclick="changeVisibility('password-container-pass')"></i>
                 </div>
-            </div>
+            </div >
 
-            <div>
+            <div class="form-field">
                 <label class= "field-label" for="cpass">Confirm password *</label>
                 <div class="password-container" id="password-container-cpass">
                     <input type = "password" class="border-gray text-dark" id = "cpass" name = "cpass" placeholder = "Confirm password">
@@ -57,7 +58,7 @@
                 </div>
             </div>
 
-            <button class="bg-primary text-light" type="submit">Create an account</button> 
+            <button class="bg-primary text-light" id="submit-btn" type="submit" disabled>Create an account</button> 
             
             <p class="sing-up-text text-dark">
                 Already have an account? 
@@ -67,5 +68,5 @@
             </p>
         </form>
     </body>
-    <script src="scripts/sign-up-and-log-in.js"></script>
+    <script src="scripts/sign-up.js"></script>
 </html>

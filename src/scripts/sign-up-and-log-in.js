@@ -10,7 +10,9 @@ const users = [
       email: "sofia.reed@example.com",
       password: "S0f!aR33d#"
     }
-]
+];
+
+
 
 // Changes visibility for password fields
 function changeVisibility(elementId){
@@ -27,7 +29,7 @@ function changeVisibility(elementId){
     eye_slash.classList.toggle("hidden");
     eye_slash.classList.toggle("inline");
       
-}
+};
 
 // LOG IN: Checks if input is correct
 document.getElementById("log-in-form").addEventListener("submit", function(event){
@@ -64,7 +66,7 @@ document.getElementById("log-in-form").addEventListener("submit", function(event
         passElement.classList.add("border-accent");
 
     }
-})
+});
 
 // LOG IN: Reloads page with different url
 document.getElementById("log-in-form").action = "purchase.html";
@@ -73,8 +75,37 @@ document.getElementById("log-in-form").action = "purchase.html";
 function isValidEmail (text){
     const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     return emailRegex.test(text);
-}
+};
 
+const fname = document.getElementById("fname");
+console.log(fname);
 
+// SIGN UP: Cheks if input is valid on blur
+document.getElementById("fname").addEventListener("focus", function(event){
+    console.log("fname focus");
+    const textInput = document.getElementById("fname").value.trim();
+    const error = document.getElementById("fname-error");
+    
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ'’\-\. ]{2,50}$/;
+    
+    const isValidInput = nameRegex.test(textInput);
+
+    if (!isValidInput) {
+        event.preventDefault();
+
+        const container = document.getElementById("fname-container");
+        const textElement = container.querySelector("#fname");
+
+        textElement.classList.remove("border-gray");
+        textElement.classList.add("border-accent");
+
+        if (textInput.lenght()<2) {
+            error.classList.toggle("hidden");
+            error.innerText = "Wrong email or password";
+        }
+    }
+
+    
+});
 
 

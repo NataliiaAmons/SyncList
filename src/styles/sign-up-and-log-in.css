@@ -12,7 +12,8 @@ p, label, input, button, h1{
   padding: 70px 50px;
   border-radius: 15px;
   text-align: center;
-  min-width: 450px;
+  max-width: 450px;
+  min-width: 350px;
 }
 
 /* Header with logo*/
@@ -86,6 +87,13 @@ button:active{
     opacity: 0.3;
 }
 
+button:disabled{
+  opacity: 0.3;
+}
+button:disabled:hover{
+  cursor: not-allowed;
+}
+
 
 /*"Sing up" text and link*/
 .sing-up-text {
@@ -129,8 +137,9 @@ button:active{
 
 
 .error {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 500;
+  text-wrap: wrap;
 }
 
 
@@ -141,3 +150,4 @@ button:active{
 .field-label{
   font-size: 17px;
 }
+
