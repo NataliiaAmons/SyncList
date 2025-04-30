@@ -51,7 +51,7 @@ document.getElementById("log-in-form").addEventListener("submit", function(event
 
 // Checking if email is valid
 function isValidEmail (text){
-    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    const emailRegex = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,}(\.[a-zA-Z0-9-]+)*$/;
     return emailRegex.test(text);
 };
 

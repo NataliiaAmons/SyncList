@@ -2,7 +2,7 @@ const singUpUser = [
     {
         "first_name": "Natalie",
         "last_name": "Carter",
-        "username": "ncarter92",
+        "username": "ncarter92a",
         "email": "natalie.carter92@example.com",
         "password": "Aq7!vLz9#rP2"
     }
@@ -12,6 +12,8 @@ const singUpUser = [
 document.getElementById("fname").addEventListener("blur", (e) => { validateName(e, "fname");});
 document.getElementById("lname").addEventListener("blur", (e) => { validateName(e, "lname");});
 document.getElementById("uname").addEventListener("blur", (e) => { validateUsername(e);});
+document.getElementById("email").addEventListener("blur", (e) => { validateEmail(e);});
+
 
 // Sets textbox styles and classes to 'valid'
 function textBoxToValidStyle (id) {
@@ -37,7 +39,6 @@ function textBoxToInvalidStyle (id) {
 
     const container = document.getElementById(id+"-container");
     const textBox = container.querySelector("#"+id);
-    const error = document.getElementById(id+"-error");
 
     // set classes to invalid
     container.classList.add("invalid");
@@ -51,7 +52,7 @@ function textBoxToInvalidStyle (id) {
 
 
 // function for validating name fields
-function validateName(event, id) {
+function validateName(e, id) {
     
     const textInput = document.getElementById(id);
     const textValue = textInput.value.trim();
@@ -62,10 +63,9 @@ function validateName(event, id) {
     const isValidInput = nameRegex.test(textValue);
 
     if (isValidInput) {
-         textBoxToValidStyle(id);
+        textBoxToValidStyle(id);
     }
     else {
-        event.preventDefault();
         textBoxToInvalidStyle(id);
 
         // error messages for "First name"
@@ -99,7 +99,7 @@ function validateName(event, id) {
 
 
 // function for validating username
-function validateUsername(event) {
+function validateUsername(e) {
     
     const textInput = document.getElementById("uname");
     const textValue = textInput.value.trim();
@@ -110,10 +110,9 @@ function validateUsername(event) {
     const isValidInput = usernameRegex.test(textValue);
 
     if (isValidInput) {
-         textBoxToValidStyle("uname");
+        textBoxToValidStyle("uname");
     }
     else {
-        event.preventDefault();
         textBoxToInvalidStyle("uname");
 
         if (textValue.length==0) {
@@ -130,6 +129,42 @@ function validateUsername(event) {
         }
         else {
             error.innerText = "Username can contain only letters, numbers, underscores";
+        }
+    }   
+}
+
+
+// function for validating email
+function validateEmail(e) {
+    
+    const textInput = document.getElementById("email");
+    const textValue = textInput.value.trim();
+    const error = document.getElementById("email-error");
+    
+    // validation with regex
+    const emailRegex = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,}(\.[a-zA-Z0-9-]+)*$/;
+    const isValidInput = emailRegex.test(textValue);
+
+    if (isValidInput) {
+        textBoxToValidStyle("email");
+    }
+    else {
+        textBoxToInvalidStyle("email");
+
+        if (textValue.length==0) {
+            error.innerText = "Email is required";
+        }
+        else if (textValue.split("@").length > 2) { // contains several '@' 
+            error.innerText = "Email can contain only one '@' symbol";
+        }
+        else if (/^@[a-zA-Z0-9-.]/.test(textValue)) {
+            error.innerText = "Email must include a name";
+        }
+        else if (!/@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,}(\.[a-zA-Z0-9-]+)*$/.test(textValue)) {
+            error.innerText = "Email must include a valid domain";
+        }
+        else {
+            error.innerText = "Email can contain only '@', letters, numbers, dots";
         }
     }   
 }
