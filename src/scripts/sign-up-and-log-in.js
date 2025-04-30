@@ -14,7 +14,8 @@ function changeVisibility(elementId){
       
 };
 
-
+const inputs = document.querySelectorAll(".form-field");
+const submit = document.getElementById("submit-btn");
 
 // function to check if all inputs are valid
 // (for enabling 'submit' button)

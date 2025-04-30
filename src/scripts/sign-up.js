@@ -8,11 +8,6 @@ const singUpUser = [
     }
 ];
 
-const inputs = document.querySelectorAll(".form-field");
-const submit = document.getElementById("submit-btn");
-
-
-
 // Cheking if current input is valid on blur
 document.getElementById("fname").addEventListener("blur", (e) => { validateName(e, "fname");});
 document.getElementById("lname").addEventListener("blur", (e) => { validateName(e, "lname");});

@@ -33,8 +33,8 @@ document.getElementById("log-in-form").addEventListener("submit", function(event
 
     if (!getUser || password != getUser.password) {
         event.preventDefault();
-        error.classList.toggle("hidden");
-        error.innerText = "Wrong email or password";
+        error.classList.remove("hidden");
+        //error.innerText = "Wrong email or password";
 
         // changing input border colors
         const container = document.getElementById("log-in-form");
