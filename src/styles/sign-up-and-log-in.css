@@ -131,11 +131,6 @@ button:disabled:hover{
   display: none !important;
 }
 
-.inline {
-  display: inline !important;
-}
-
-
 .error {
   font-size: 17px;
   font-weight: 500;

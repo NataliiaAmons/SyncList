@@ -1,19 +1,3 @@
-// Example users
-const users = [
-    {
-      username: "james_walker",
-      email: "james.walker@example.com",
-      password: "Jw@2024rock"
-    },
-    {
-      username: "sofia.reed",
-      email: "sofia.reed@example.com",
-      password: "S0f!aR33d#"
-    }
-];
-
-
-
 // Changes visibility for password fields
 function changeVisibility(elementId){
     const container = document.getElementById(elementId);
@@ -21,91 +5,46 @@ function changeVisibility(elementId){
     const eye = container.querySelector(".fa-eye");
     const eye_slash = container.querySelector(".fa-eye-slash");
 
+    //check if password input hidden
     isPassword = inputElement.type==="password";
 
     inputElement.type = isPassword ?  "text" : "password";
     eye.classList.toggle("hidden");
-    eye.classList.toggle("inline");
     eye_slash.classList.toggle("hidden");
-    eye_slash.classList.toggle("inline");
       
 };
 
-// LOG IN: Checks if input is correct
-document.getElementById("log-in-form").addEventListener("submit", function(event){
 
-    const textInput = document.getElementById("email-or-usern").value.trim();
-    const password = document.getElementById("pass").value;
 
-    const error = document.getElementById("error");
+// function to check if all inputs are valid
+// (for enabling 'submit' button)
+function checkInputs() {
+    let allFilled = true;
 
-    error.classList.add("hidden");
+    //check if any inputs are invalid
+    inputs.forEach(inputDiv => {
+      const input = inputDiv.getElementsByTagName("input")[0];
+      // check if input element is empty
+      if (input.value.trim() === '') {
+        allFilled = false;
+      }
+      // check if input div is marked 'invalid'
+      else if (inputDiv.classList.contains("invalid")){
+        allFilled = false;
+      }
+    });
 
-    let getUser;
-    // check if input is email or username
-    if (isValidEmail(textInput)) {
-        getUser = users.find(user => user.email === textInput);
+    // enable/disable 'submit' button
+    if (allFilled){
+        submit.disabled = false;
     }
     else {
-        getUser = users.find(user => user.username === textInput);
+        submit.disabled = true;
     }
+}
 
-    if (!getUser || password != getUser.password) {
-        event.preventDefault();
-        error.classList.toggle("hidden");
-        error.innerText = "Wrong email or password";
-
-        // changing input border colors
-        const container = document.getElementById("log-in-form");
-        const textElement = container.querySelector("#email-or-usern");
-        const passElement = container.querySelector("#pass");
-
-        textElement.classList.remove("border-gray");
-        textElement.classList.add("border-accent");
-        passElement.classList.remove("border-gray");
-        passElement.classList.add("border-accent");
-
-    }
+// Enabling/diabling (if needed) 'submit' button after each input
+inputs.forEach(inputDiv => {
+    const input = inputDiv.getElementsByTagName("input")[0];
+    input.addEventListener("blur", checkInputs);
 });
-
-// LOG IN: Reloads page with different url
-document.getElementById("log-in-form").action = "purchase.html";
-
-// Checking if email is valid
-function isValidEmail (text){
-    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    return emailRegex.test(text);
-};
-
-const fname = document.getElementById("fname");
-console.log(fname);
-
-// SIGN UP: Cheks if input is valid on blur
-document.getElementById("fname").addEventListener("focus", function(event){
-    console.log("fname focus");
-    const textInput = document.getElementById("fname").value.trim();
-    const error = document.getElementById("fname-error");
-    
-    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ'’\-\. ]{2,50}$/;
-    
-    const isValidInput = nameRegex.test(textInput);
-
-    if (!isValidInput) {
-        event.preventDefault();
-
-        const container = document.getElementById("fname-container");
-        const textElement = container.querySelector("#fname");
-
-        textElement.classList.remove("border-gray");
-        textElement.classList.add("border-accent");
-
-        if (textInput.lenght()<2) {
-            error.classList.toggle("hidden");
-            error.innerText = "Wrong email or password";
-        }
-    }
-
-    
-});
-
-
