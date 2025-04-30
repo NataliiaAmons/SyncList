@@ -19,24 +19,42 @@
             
             <h1 class="text-dark">Sign up</h1>
 
-            <input type = "text" class="border-gray text-dark" id = "fname" name = "fname" placeholder = "First name">
-
-            <input type = "text" class="border-gray text-dark" id = "lname" name = "lname" placeholder = "Last name">
-
-            <input type = "text" class="border-gray text-dark" id = "uname" name = "uname" placeholder = "Username">
-
-            <input type = "email" class="border-gray text-dark" id = "email" name = "email" placeholder = "Email">
-        
-            <div class="password-container" id="password-container-pass">
-                <input type = "password" class="border-gray text-dark" id = "pass" name = "pass" placeholder = "Create password">
-                <i class="inline password-visibility-icon text-dark fa-regular fa-eye" id ="fa-eye-pass" onclick="changeVisibility('password-container-pass')"></i>
-                <i class="hidden password-visibility-icon text-dark fa-regular fa-eye-slash" id="fa-eye-slash-pass" onclick="changeVisibility('password-container-pass')"></i>
+            <div>
+                <label class= "field-label" for="fname">First name *</label>
+                <input type = "text" class="border-gray text-dark" id = "fname" name = "fname" placeholder = "First name">
             </div>
 
-            <div class="password-container" id="password-container-cpass">
-                <input type = "password" class="border-gray text-dark" id = "cpass" name = "cpass" placeholder = "Confirm password">
-                <i class="inline password-visibility-icon text-dark fa-regular fa-eye" id ="fa-eye-cpass" onclick="changeVisibility('password-container-cpass')"></i>
-                <i class="hidden password-visibility-icon text-dark fa-regular fa-eye-slash" id="fa-eye-slash-cpass" onclick="changeVisibility('password-container-cpass')"></i>
+            <div>
+                <label class= "field-label" for="lname">Last name *</label>
+                <input type = "text" class="border-gray text-dark" id = "lname" name = "lname" placeholder = "Last name">
+            </div>
+
+            <div>
+                <label class= "field-label" for="uname">Username *</label>
+                <input type = "text" class="border-gray text-dark" id = "uname" name = "uname" placeholder = "Username">
+            </div>
+            <div>
+                <label class= "field-label" for="email">Email *</label>
+                <input type = "email" class="border-gray text-dark" id = "email" name = "email" placeholder = "Email">
+            </div>
+
+            <div>
+                <label class= "field-label" for="pass">Password *</label>
+                <div class="password-container" id="password-container-pass">
+                    
+                    <input type = "password" class="border-gray text-dark" id = "pass" name = "pass" placeholder = "Password">
+                    <i class="inline password-visibility-icon text-dark fa-regular fa-eye" id ="fa-eye-pass" onclick="changeVisibility('password-container-pass')"></i>
+                    <i class="hidden password-visibility-icon text-dark fa-regular fa-eye-slash" id="fa-eye-slash-pass" onclick="changeVisibility('password-container-pass')"></i>
+                </div>
+            </div>
+
+            <div>
+                <label class= "field-label" for="cpass">Confirm password *</label>
+                <div class="password-container" id="password-container-cpass">
+                    <input type = "password" class="border-gray text-dark" id = "cpass" name = "cpass" placeholder = "Confirm password">
+                    <i class="inline password-visibility-icon text-dark fa-regular fa-eye" id ="fa-eye-cpass" onclick="changeVisibility('password-container-cpass')"></i>
+                    <i class="hidden password-visibility-icon text-dark fa-regular fa-eye-slash" id="fa-eye-slash-cpass" onclick="changeVisibility('password-container-cpass')"></i>
+                </div>
             </div>
 
             <button class="bg-primary text-light" type="submit">Create an account</button> 

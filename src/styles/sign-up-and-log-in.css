@@ -133,3 +133,11 @@ button:active{
   font-weight: 500;
 }
 
+
+.container div {
+  text-align: start;
+}
+
+.field-label{
+  font-size: 17px;
+}
