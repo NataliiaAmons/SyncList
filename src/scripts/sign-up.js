@@ -11,7 +11,7 @@ const singUpUser = [
 // Cheking if current input is valid on blur
 document.getElementById("fname").addEventListener("blur", (e) => { validateName(e, "fname");});
 document.getElementById("lname").addEventListener("blur", (e) => { validateName(e, "lname");});
-
+document.getElementById("uname").addEventListener("blur", (e) => { validateUsername(e);});
 
 // Sets textbox styles and classes to 'valid'
 function textBoxToValidStyle (id) {
@@ -85,7 +85,6 @@ function validateName(event, id) {
         else if (id==="lname"){
             if (textValue.length==0) {
                 error.innerText = "Last name is required";
-
             }
             else if (textValue.length<2 || textValue.length>30) {
                 error.innerText = "Last name must be 2–30 characters";
@@ -97,3 +96,40 @@ function validateName(event, id) {
     }   
 }
 
+
+
+// function for validating username
+function validateUsername(event) {
+    
+    const textInput = document.getElementById("uname");
+    const textValue = textInput.value.trim();
+    const error = document.getElementById("uname-error");
+    
+    // validation with regex
+    const usernameRegex = /^[a-zA-Z][a-zA-Z0-9_]{2,14}[a-zA-Z]$/;
+    const isValidInput = usernameRegex.test(textValue);
+
+    if (isValidInput) {
+         textBoxToValidStyle("uname");
+    }
+    else {
+        event.preventDefault();
+        textBoxToInvalidStyle("uname");
+
+        if (textValue.length==0) {
+            error.innerText = "Username is required";
+        }
+        else if (textValue.length<4 || textValue.length>16) {
+            error.innerText = "Username must be 4–16 characters";
+        }
+        else if (textValue.startsWith("_") || /^\d/.test(textValue)){ // starts with "_" or number
+            error.innerText = "Username can not start with a number or an underscore";
+        }
+        else if (textValue.endsWith("_") || /\d$/.test(textValue)){ // ends with "_" or number
+            error.innerText = "Username can not end with a number or an underscore";
+        }
+        else {
+            error.innerText = "Username can contain only letters, numbers, underscores";
+        }
+    }   
+}
