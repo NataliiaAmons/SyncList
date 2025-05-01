@@ -111,11 +111,12 @@ button:disabled:hover{
 
 
 
-#password-container{
+.password-container{
   position: relative;
   display: flex;
   align-items: center;
 }
+
 
 .password-visibility-icon {
   position: absolute;
