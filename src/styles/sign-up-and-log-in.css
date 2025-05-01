@@ -28,6 +28,13 @@ p, label, input, button, h1, li{
 .form-fields-flex{
   display: flex;
   flex-direction: column;
+}
+
+.sing-up-flex-gap {
+  gap: 20px;
+}
+
+.log-in-flex-gap {
   gap: 30px;
 }
 
@@ -149,7 +156,7 @@ button:disabled:hover{
 
 
 
-#pass-errors-list{
+#pass-req-list{
   list-style-position: inside;
   columns: 2;
   gap: 5px;
@@ -159,6 +166,6 @@ button:disabled:hover{
   margin-top: 5px;
 }
 
-#pass-errors-list li{
+#pass-req-list li{
   font-size: 17px;
 }
