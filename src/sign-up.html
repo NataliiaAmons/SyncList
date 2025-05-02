@@ -46,24 +46,25 @@
             <div id="pass-container" class="form-field">
                 <label class= "field-label" for="pass">Password *</label>
                 <div class="password-container" id="password-container-pass">
-                    
-                    <input type = "password" class="border-gray text-dark" id = "pass" name = "pass" placeholder = "Password">
+                    <input type = "password" class="border-gray text-dark" maxlength="50" id = "pass" name = "pass" placeholder = "Password">
                     <i class="password-visibility-icon text-dark fa-regular fa-eye" id ="fa-eye-pass" onclick="changeVisibility('password-container-pass')"></i>
                     <i class="hidden password-visibility-icon text-dark fa-regular fa-eye-slash" id="fa-eye-slash-pass" onclick="changeVisibility('password-container-pass')"></i>
                 </div>
                 <p id="pass-error" class="error text-accent"></p>
                 <ul id="pass-req-list" class="text-dark-gray">
-                    <li id="pass-li-min-len">minimum 8 characters</li>
-                    <li id="pass-li-lowercase">lowercase letters</li>
-                    <li id="pass-li-uppercase">uppercase letters</li>
-                    <li id="pass-li-special-char">special characters</li>
+                    <li id="pass-li-min-len" class="visible">minimum 8 characters</li>
+                    <li id="pass-li-max-len" class="hidden text-accent">maximum 50 characters</li>
+                    <li id="pass-li-lowercase" class="visible">lowercase letters</li>
+                    <li id="pass-li-uppercase" class="visible">uppercase letters</li>
+                    <li id="pass-li-digit" class="visible">digits</li>
+                    <li id="pass-li-special-char" class="visible">special characters:<br>#?!@$%^&*-</li>
                 </ul> 
             </div >
 
             <div id="cpass-container"  class="form-field">
                 <label class= "field-label" for="cpass">Confirm password *</label>
                 <div class="password-container" id="password-container-cpass">
-                    <input type = "password" class="border-gray text-dark" id = "cpass" name = "cpass" placeholder = "Confirm password">
+                    <input type = "password" class="border-gray text-dark" maxlength="50" id = "cpass" name = "cpass" placeholder = "Confirm password">
                     <i class="password-visibility-icon text-dark fa-regular fa-eye" id ="fa-eye-cpass" onclick="changeVisibility('password-container-cpass')"></i>
                     <i class="hidden password-visibility-icon text-dark fa-regular fa-eye-slash" id="fa-eye-slash-cpass" onclick="changeVisibility('password-container-cpass')"></i>
                 </div>

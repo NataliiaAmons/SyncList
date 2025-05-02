@@ -13,6 +13,7 @@ document.getElementById("fname").addEventListener("blur", (e) => { validateName(
 document.getElementById("lname").addEventListener("blur", (e) => { validateName(e, "lname");});
 document.getElementById("uname").addEventListener("blur", (e) => { validateUsername(e);});
 document.getElementById("email").addEventListener("blur", (e) => { validateEmail(e);});
+document.getElementById("pass").addEventListener("blur", (e) => { validatePassword(e);});
 
 
 // Sets textbox styles and classes to 'valid'
@@ -167,4 +168,110 @@ function validateEmail(e) {
             error.innerText = "Email can contain only '@', letters, numbers, dots";
         }
     }   
+}
+
+
+// function for validating password
+function validatePassword(e) {
+    
+    const textInput = document.getElementById("pass");
+    const textValue = textInput.value;
+    const error = document.getElementById("pass-error");
+    const requirements = document.querySelector("#pass-req-list");
+    
+    // validation with regex
+    const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])[A-Za-z0-9#?!@$%^&*-]{8,50}$/;
+    const isValidInput = passwordRegex.test(textValue);
+
+    // empty error
+    error.innerText = "";
+    
+    // hide max length limit
+    const maxValReq = document.getElementById("pass-li-max-len");
+    maxValReq.classList.add("hidden");
+
+    if (isValidInput) {
+        textBoxToValidStyle("pass");
+        requirements.classList.add("hidden");
+
+        console.log('good');
+    }
+    else {
+        console.log('invalid');
+
+        textBoxToInvalidStyle("pass");
+        requirements.classList.remove("hidden");
+
+        const minValReq = document.getElementById("pass-li-min-len");
+        const lowercaseReq = document.getElementById("pass-li-lowercase");
+        const uppercaseReq = document.getElementById("pass-li-uppercase");
+        const digitReq = document.getElementById("pass-li-digit");
+        const specCharReq = document.getElementById("pass-li-special-char");
+
+        // show all (except max length)
+        const requirementsArray = requirements.querySelectorAll(".visible");
+        requirementsArray.forEach(req => {
+            req.classList.remove("hidden"); 
+        });
+        
+
+        if (textValue.length==0) {
+            error.innerText = "Password is required";
+            requirements.classList.remove("text-dark-gray");
+            requirements.classList.add("text-accent");
+        }
+        else {
+
+            // minimum 8 characters
+            if (textValue.length<8) {
+                minValReq.classList.add("text-accent");
+            }
+            else {
+                minValReq.classList.add("hidden");
+            }
+
+            // maximum 50 characters
+            // visible only if overdrawn
+            if (textValue.length>50) {
+                maxValReq.classList.remove("hidden");
+            }
+
+            // lowercase letters
+            if (!/[a-z]/.test(textValue)) {
+                lowercaseReq.classList.add("text-accent");
+            }
+            else {
+                lowercaseReq.classList.add("hidden");
+            }
+
+            // uppercase letters
+            if (!/[A-Z]/.test(textValue)) { 
+                uppercaseReq.classList.add("text-accent");
+            }
+            else {
+                uppercaseReq.classList.add("hidden");
+            }
+
+            // digits
+            if (!/[0-9]/.test(textValue)) {
+                digitReq.classList.add("text-accent");
+            }
+            else {
+                digitReq.classList.add("hidden");
+            }
+
+            // special characters
+            if (!/[#?!@$%^&*-]/.test(textValue)) {
+                specCharReq.classList.add("text-accent");
+            }
+            else {
+                specCharReq.classList.add("hidden");
+            }
+
+            // invalid characters
+            if (!/^[A-Za-z0-9#?!@$%^&*-]*$/.test(textValue)){  
+                error.innerText = "Please remove invalid characters";
+            } 
+        }
+    }     
 }
