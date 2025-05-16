@@ -8,6 +8,27 @@ const singUpUser = [
     }
 ];
 
+// Validating filled input fields on page load
+document.addEventListener('DOMContentLoaded', function() {
+
+    const fnameInput = document.getElementById("fname");
+    const fnameValue = fnameInput.value.trim();
+    if (fnameValue.length!==0) {validateName(null, "fname");}
+
+    const lnameInput = document.getElementById("lname");
+    const lnameValue = lnameInput.value.trim();
+    if (lnameValue.length!==0) {validateName(null, "lname");}
+
+    const unameInput = document.getElementById("uname");
+    const unameValue = unameInput.value.trim();
+    if (unameValue.length!==0) {validateUsername(null);}
+
+    const emailInput = document.getElementById("email");
+    const emailValue = emailInput.value.trim();
+    if (emailValue.length!==0) {validateEmail(null);}
+});
+
+
 // Cheking if current input is valid on blur
 document.getElementById("fname").addEventListener("blur", (e) => { validateName(e, "fname");});
 document.getElementById("lname").addEventListener("blur", (e) => { validateName(e, "lname");});
@@ -23,7 +44,6 @@ document.getElementById("pass").addEventListener("blur", (e) => {
         confirmPassword(e);
     }
 });
-
 
 
 // Sets textbox styles and classes to 'valid'
