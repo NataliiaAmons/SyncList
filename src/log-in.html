@@ -9,22 +9,33 @@
         <link rel="stylesheet" href="styles/sign-up-and-log-in.css">
 
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     </head>
     <body class="bg-light">
-        <form class = "container form-fields-flex bg-light border-gray shadow-neutral-corner">
+        <form class = "container form-fields-flex log-in-flex-gap bg-light border-gray shadow-neutral-corner" id="log-in-form">
             <div class = "header bg-support border-bottomgray">
                 <img class="logo-image" src="images/synclist-high-resolution-logo.png" alt="logo">
             </div>
+
             <h1 class="text-dark">Log in</h1>
 
-            <input type = "email" class="border-gray text-dark" id = "email" name = "email" placeholder = "Email">
-        
-            <input type = "password" class="border-gray text-dark"  id = "pass" name = "pass" placeholder = "Password">
+            <div  id="email-container" class="form-field">
+                <input type = "text" class="border-gray text-dark" id = "email-or-usern" name = "email-or-usern" placeholder = "Email or username" required>
+            </div>
 
+            <div id="password-container" class="form-field password-container" >
+                <input type = "password" class="border-gray text-dark"  id = "pass" name = "pass" placeholder = "Password" required>
+                <i class="password-visibility-icon text-dark fa-regular fa-eye" id ="fa-eye" onclick="changeVisibility('password-container')"></i>
+                <i class="hidden password-visibility-icon text-dark fa-regular fa-eye-slash" id="fa-eye-slash" onclick="changeVisibility('password-container')"></i>
+            </div>
+            
             <label class="checkbox-container text-dark">
                 <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
-            <button class="bg-primary text-light" type="submit">Log in</button> 
+            
+            <p id="error" class="hidden error text-accent">Wrong email or password</p>
+            
+            <button class="bg-primary text-light" id="submit-btn" type="submit" disabled>Log in</button> 
 
             <p class="sing-up-text text-dark">
                 Don`t have an account? 
@@ -34,6 +45,8 @@
             </p>
         </form>
     </body>
+    <script src="scripts/log-in.js" defer></script>
+    <script src="scripts/sign-up-and-log-in.js" defer></script>
 </html>
 
 
