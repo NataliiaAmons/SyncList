@@ -13,7 +13,8 @@ document.getElementById("fname").addEventListener("blur", (e) => { validateName(
 document.getElementById("lname").addEventListener("blur", (e) => { validateName(e, "lname");});
 document.getElementById("uname").addEventListener("blur", (e) => { validateUsername(e);});
 document.getElementById("email").addEventListener("blur", (e) => { validateEmail(e);});
-document.getElementById("pass").addEventListener("blur", (e) => { validatePassword(e);});
+document.getElementById("pass").addEventListener("blur", (e) => { validatePassword(e);}, (e) => { confirmPassword(e);});
+document.getElementById("cpass").addEventListener("blur", (e) => { confirmPassword(e);});
 
 
 // Sets textbox styles and classes to 'valid'
@@ -170,6 +171,11 @@ function validateEmail(e) {
     }   
 }
 
+function passwordRegexTest (pass) {
+    const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])[A-Za-z0-9#?!@$%^&*-]{8,50}$/;
+    return passwordRegex.test(pass);
+}
+
 
 // function for validating password
 function validatePassword(e) {
@@ -181,7 +187,7 @@ function validatePassword(e) {
     
     // validation with regex
     const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])[A-Za-z0-9#?!@$%^&*-]{8,50}$/;
-    const isValidInput = passwordRegex.test(textValue);
+    const isValidInput = passwordRegexTest(textValue);
 
     // empty error
     error.innerText = "";
@@ -193,11 +199,8 @@ function validatePassword(e) {
     if (isValidInput) {
         textBoxToValidStyle("pass");
         requirements.classList.add("hidden");
-
-        console.log('good');
     }
     else {
-        console.log('invalid');
 
         textBoxToInvalidStyle("pass");
         requirements.classList.remove("hidden");
@@ -274,4 +277,38 @@ function validatePassword(e) {
             } 
         }
     }     
+}
+
+
+// function for confirming password
+function confirmPassword(e) {
+    
+    console.log("cpass")
+    const passInput = document.getElementById("pass");
+    const passValue = passInput.value.trim();
+    const cpassInput = document.getElementById("cpass");
+    const cpassValue = cpassInput.value.trim();
+    const error = document.getElementById("cpass-error");
+
+    const passValid = passwordRegexTest(passValue);
+    if (passValid){
+        console.log("valid")
+        textBoxToValidStyle("pass");
+    }
+    
+    if (cpassValue === passValue) {
+
+        textBoxToValidStyle("cpass");
+    }
+    else {
+        textBoxToInvalidStyle("cpass");
+
+        if (cpassValue.length==0) {
+            error.innerText = "Password confirmation is required";
+        }
+        else {
+            textBoxToInvalidStyle("pass");
+            error.innerText = "Password and confirm password do not match";
+        }
+    }   
 }
