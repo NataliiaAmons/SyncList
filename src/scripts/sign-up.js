@@ -13,8 +13,17 @@ document.getElementById("fname").addEventListener("blur", (e) => { validateName(
 document.getElementById("lname").addEventListener("blur", (e) => { validateName(e, "lname");});
 document.getElementById("uname").addEventListener("blur", (e) => { validateUsername(e);});
 document.getElementById("email").addEventListener("blur", (e) => { validateEmail(e);});
-document.getElementById("pass").addEventListener("blur", (e) => { validatePassword(e);}, (e) => { confirmPassword(e);});
+document.getElementById("pass").addEventListener("blur", (e) => { validatePassword(e);});
 document.getElementById("cpass").addEventListener("blur", (e) => { confirmPassword(e);});
+
+document.getElementById("pass").addEventListener("blur", (e) => {
+    const cpassInput = document.getElementById("cpass");
+    const cpassValue = cpassInput.value.trim();
+    if (cpassValue.length!==0) {
+        confirmPassword(e);
+    }
+});
+
 
 
 // Sets textbox styles and classes to 'valid'

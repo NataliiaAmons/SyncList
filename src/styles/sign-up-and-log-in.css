@@ -155,18 +155,6 @@ button:disabled:hover{
 }
 
 
-/*
-#pass-req-list{
-  list-style-position: inside;
-  columns: 2;
-  gap: 5px;
-  padding: 0;
-  padding-left: 10px;
-  margin-bottom: 0;
-  margin-top: 5px;
-}
-*/
-
 #pass-req-list li{
   font-size: 17px;
 }
@@ -183,8 +171,4 @@ button:disabled:hover{
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(3, minmax(0, auto));
-}
-
-#pass-req-list > li[hidden]{
-  display: none; 
 }
