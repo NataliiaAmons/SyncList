@@ -143,6 +143,8 @@ button:disabled:hover{
   font-size: 17px;
   font-weight: 500;
   text-wrap: wrap;
+  max-width: 410px;
+  margin: 0;
 }
 
 
