@@ -1,0 +1,18 @@
+p, label, input, textarea, button{
+    font-family: "Quicksand", sans-serif;
+    font-size: 25px;
+    margin: 0px;
+}
+
+.widget-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 100px;
+    padding: 10px;
+
+    border-radius: 10px;
+}
