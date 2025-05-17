@@ -137,7 +137,7 @@ function validateUsername(e) {
     const error = document.getElementById("uname-error");
     
     // validation with regex
-    const usernameRegex = /^[a-zA-Z][a-zA-Z0-9_]{2,14}[a-zA-Z]$/;
+    const usernameRegex = /^[a-zA-Z][a-zA-Z0-9_]{2,14}[a-zA-Z0-9]$/;
     const isValidInput = usernameRegex.test(textValue);
 
     if (isValidInput) {
@@ -155,8 +155,8 @@ function validateUsername(e) {
         else if (textValue.startsWith("_") || /^\d/.test(textValue)){ // starts with "_" or number
             error.innerText = "Username can not start with a number or an underscore";
         }
-        else if (textValue.endsWith("_") || /\d$/.test(textValue)){ // ends with "_" or number
-            error.innerText = "Username can not end with a number or an underscore";
+        else if (textValue.endsWith("_")){ // ends with "_"
+            error.innerText = "Username can not end with an underscore";
         }
         else {
             error.innerText = "Username can contain only letters, numbers, underscores";
@@ -215,7 +215,6 @@ function validatePassword(e) {
     const requirements = document.querySelector("#pass-req-list");
     
     // validation with regex
-    const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])[A-Za-z0-9#?!@$%^&*-]{8,50}$/;
     const isValidInput = passwordRegexTest(textValue);
 
     // empty error
