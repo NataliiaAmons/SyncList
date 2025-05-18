@@ -5,11 +5,14 @@
       <title>Weather</title>
 
       <link rel="stylesheet" href="styles/color-scheme.css">
+      <link rel="stylesheet" href="styles/global.css">
       <link rel="stylesheet" href="styles/header.css">
+      <link rel="stylesheet" href="styles/footer.css">
       <link rel="stylesheet" href="styles/weather-widget.css">
 
       <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-  </head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    </head>
   <body class = "bg-neutral">
 
     <div class = "header bg-support border-bottom-gray">
@@ -30,11 +33,61 @@
         <p class="username-header text-dark">Nataliia</p>
       </div>
     </div>
+    <div class="content">
+      <div class = "widget-container">
+        <label>Weather Widget</label>
+      </div>
+    </div> 
+    <footer class = "bg-support border-top-gray">
+      <div class = "footer-container">
+        <div>
+        <img class="footer-logo" src="images\synclist-high-resolution-logo.png" alt="logo"> 
+        </div>
+        <p id="tagline">Sync, Share, and Shop Together.</p>
 
-    <div class = "widget-container">
-      <label>Weather Widget</label>
-      <div></div>
-    </div>  
+        <table>
+          <tr>
+            <th>Features</th>
+            <th>Resources</th>
+            <th>Company</th>
+            <th>Get Started</th>
+          </tr>
+          <tr>
+            <td>Why SyncList</td>
+            <td>SyncList News</td>
+            <td>About Us</td>
+            <td>Sign Up for free</td>
+          </tr>
+          <tr>
+            <td>How it works</td>
+            <td>Product Updates</td>
+            <td>Careers</td>
+            <td>Log In</td>
+          </tr>
+          <tr>
+            <td>Forum</td>
+            <td>Help Center</td>
+            <td>Press </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Contact Us</td>
+            <td></td>
+          </tr>
+        </table> 
+
+        <div class="social-icons">
+            <i class="text-dark fa-brands fa-facebook"></i>
+            <i class="text-dark fa-brands fa-twitter"></i>
+            <i class="text-dark fa-brands fa-youtube"></i>
+            <i class="text-dark fa-brands fa-instagram"></i>
+        </div>
+
+        <p class="copyright text-dark-gray">© 2025 Nataliia Amons</p>
+        
+
+      </div>
+    </footer>
 
   </body>
   <script src="scripts/weather-widget.js" defer></script>
