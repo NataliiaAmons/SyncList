@@ -2,6 +2,7 @@ import "./styles/global.css";
 import "./styles/color-scheme.css";
 import "./styles/header.css";
 import "./styles/footer.css";
+import "./styles/weather-widget.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Weather from "./components/Weather";
