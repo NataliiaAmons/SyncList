@@ -51,7 +51,8 @@ export default function Weather() {
 }
 
 function getWeatherLink(location) {
-  const api_key = "bfbf905c5c0c9c6a028e43fdb56895d8";
+  const api_key = process.env.REACT_APP_OPENWEATHER_KEY;
+  console.log(api_key);
   if (typeof location == "string") {
     return `https://api.openweathermap.org/data/2.5/forecast/daily?&q=${location}&appid=${api_key}&units=metric`;
   } else if (typeof location == "object" && location.lat && location.lon) {
