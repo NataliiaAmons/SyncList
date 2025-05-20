@@ -6,20 +6,14 @@ export default function Weather() {
   useEffect(() => {
     getCoordinates()
       .then((coord) => {
-        console.log("getCoordinates");
-        console.log(typeof coord);
-        console.log(coord.lon);
         getWeatherResponse(coord).then((res) => {
           console.log("Got WeatherResponse");
-          console.log(res);
           setWeather(res);
         });
       })
       .catch((err) => {
         console.error(err);
       });
-    console.log(openWeather);
-    console.log("Load Weather");
   });
 
   if (!openWeather.list) {
@@ -34,7 +28,24 @@ export default function Weather() {
         src={`https://openweathermap.org/img/wn/${openWeather?.list[0].weather?.[0]?.icon}.png`}
         alt="condition"
       />
-      <p>{openWeather?.list[0].weather?.[0]?.description}</p>
+
+      <p>{openWeather?.list[0].weather[0].description}</p>
+      <div>
+        {openWeather?.list
+          .filter((day) => day.dt_txt.includes("12:00:00"))
+          .map((day) => (
+            <div key={day.dt}>
+              <p>{day.dt_txt}</p>
+              <p>{`${openWeather?.city.name}, ${openWeather?.city.country}`}</p>
+              <p>{`${Math.round(day.main.temp)} °C`}</p>
+              <img
+                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`}
+                alt="condition"
+              />
+              <p>{day.weather[0].description}</p>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
@@ -55,7 +66,6 @@ async function getWeatherResponse(location) {
   const link = getWeatherLink(location);
   let response = await fetch(link);
   if (response.ok) {
-    console.log("We got response");
     return response.json();
   }
   console.log("We got error");
@@ -64,7 +74,6 @@ async function getWeatherResponse(location) {
 
 async function getCoordinates() {
   const coord = await getGeolocation();
-
   return coord;
 }
 
