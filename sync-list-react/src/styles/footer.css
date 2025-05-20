@@ -1,7 +1,5 @@
-.body,
-body,
-html {
-  margin: 0;
+.body {
+  margin-top: 100px;
   padding: 0;
   height: 100vh;
   display: flex;
@@ -39,7 +37,6 @@ footer {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
   padding-left: 4px;
-  margin: 0px;
 }
 
 table {

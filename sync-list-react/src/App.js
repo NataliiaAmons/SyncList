@@ -4,12 +4,15 @@ import "./styles/header.css";
 import "./styles/footer.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Weather from "./components/Weather";
 
 function App() {
   return (
     <div className="body">
       <Header></Header>
-      <div className="content"></div>
+      <div className="content">
+        <Weather></Weather>
+      </div>
       <Footer></Footer>
     </div>
   );
