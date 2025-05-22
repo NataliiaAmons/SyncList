@@ -31,8 +31,17 @@ export default function Weather() {
     return (
       <div className="widget-container bg-primary text-light">
         <div className="current-day">
+          <p className="current-temp">{`${Math.round(current.main.temp)}°`}</p>
+          <p className="current-descript text-secondary">
+            {current.weather[0].description}
+          </p>
+          <img
+            className="current-weather-icon"
+            src={`https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`}
+            alt="condition"
+          />
           <div className="current-info">
-            <p className="current-city text-secondary">{`${openWeather.city.name}`}</p>
+            <p className="current-city text-secondary">{`${openWeather.city.name}, ${openWeather.city.country}`}</p>
             <div className="current-date">
               <span className="current-weekday text-secondary">
                 {getWeekday(current.dt_txt.split(" ")[0])}
@@ -46,18 +55,9 @@ export default function Weather() {
               </span>
             </div>
           </div>
-          <p className="current-temp">{`${Math.round(current.main.temp)}°`}</p>
-          <img
-            className="current-weather-icon"
-            src={`https://openweathermap.org/img/wn/${current.weather[0].icon}.png`}
-            alt="condition"
-          />
-          <p className="current-descript text-secondary">
-            {current.weather[0].description}
-          </p>
         </div>
         <div className="next-days">
-          {byDays.slice(1, 4).map((day) => {
+          {byDays.slice(1, 5).map((day) => {
             return (
               <div key={day.date} className="one-day">
                 <p className="one-weekday text-secondary">
