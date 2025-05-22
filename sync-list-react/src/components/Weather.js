@@ -2,12 +2,24 @@ import React, { useEffect, useState } from "react";
 
 export default function Weather() {
   const [openWeather, setWeather] = useState({});
+  const [city, setCity] = useState("");
+  const [inputCity, setInputCity] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
+  const fetchWeather = async (useLocation) => {
+    var currentCity;
+    if (useLocation) {
+      currentCity = "";
+    } else {
+      setCity(inputCity);
+      currentCity = inputCity;
+    }
+    console.log("input =", inputCity);
+    console.log("city =", city);
+    console.log(currentCity);
     console.log("Loading...");
     setIsLoading(true);
-    getCoordinates()
+    getCoordinates(currentCity)
       .then((coord) => {
         getWeatherResponse(coord).then((res) => {
           console.log("Got WeatherResponse");
@@ -18,7 +30,7 @@ export default function Weather() {
         console.error(err);
       })
       .finally(() => setIsLoading(false));
-  }, []);
+  };
 
   if (isLoading) {
     return <p>Loading weather...</p>;
@@ -30,6 +42,28 @@ export default function Weather() {
     const currentDate = new Date(current.dt_txt.split(" ")[0]);
     return (
       <div className="widget-container bg-primary text-light">
+        <div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              fetchWeather(false);
+            }}
+          >
+            <input
+              className="city-input"
+              type="text"
+              placeholder="City"
+              value={inputCity}
+              onChange={(e) => setInputCity(e.target.value)}
+            ></input>
+            <button type="submit" className="weather-button">
+              Get weather
+            </button>
+          </form>
+          <button className="weather-button" onClick={() => fetchWeather(true)}>
+            Get weather
+          </button>
+        </div>
         <div className="current-day">
           <p className="current-temp">{`${Math.round(current.main.temp)}°`}</p>
           <p className="current-descript text-secondary">
@@ -76,13 +110,38 @@ export default function Weather() {
         </div>
       </div>
     );
+  } else {
+    return (
+      <div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            fetchWeather(false);
+          }}
+        >
+          <input
+            className="city-input"
+            type="text"
+            placeholder="City"
+            value={inputCity}
+            onChange={(e) => setInputCity(e.target.value)}
+          ></input>
+          <button type="submit" className="weather-button">
+            Get weather
+          </button>
+        </form>
+        <button className="weather-button" onClick={() => fetchWeather(true)}>
+          Get weather
+        </button>
+      </div>
+    );
   }
 }
 
 function getWeatherLink(location) {
   const api_key = process.env.REACT_APP_OPENWEATHER_KEY;
   if (typeof location == "string") {
-    return `https://api.openweathermap.org/data/2.5/forecast/daily?&q=${location}&appid=${api_key}&units=metric`;
+    return `https://api.openweathermap.org/data/2.5/forecast?&q=${location}&appid=${api_key}&units=metric`;
   } else if (typeof location == "object" && location.lat && location.lon) {
     return `https://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lon}&appid=${api_key}&units=metric`;
   }
@@ -100,9 +159,13 @@ async function getWeatherResponse(location) {
   return {};
 }
 
-async function getCoordinates() {
-  const coord = await getGeolocation();
-  return coord;
+async function getCoordinates(city) {
+  if (city) {
+    return city;
+  } else {
+    const coord = await getGeolocation();
+    return coord;
+  }
 }
 
 async function getGeolocation() {
