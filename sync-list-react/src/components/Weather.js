@@ -37,6 +37,7 @@ export default function Weather() {
       {/*Submit form*/}
       <div>
         <form
+          className="form-city"
           onSubmit={(e) => {
             e.preventDefault();
             fetchWeather(false);
@@ -51,14 +52,14 @@ export default function Weather() {
           ></input>
           <button
             type="submit"
-            className="weather-button"
+            className="city-submit-button bg-secondary"
             disabled={isLoading || inputCity.trim() === ""}
           >
             Get weather
           </button>
         </form>
         <button
-          className="weather-button"
+          className="use-location-button bg-support"
           onClick={() => fetchWeather(true)}
           disabled={isLoading}
         >
