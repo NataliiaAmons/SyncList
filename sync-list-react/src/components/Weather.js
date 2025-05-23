@@ -68,7 +68,6 @@ export default function Weather() {
       console.log("clearTimeout");
       if (response.ok) {
         console.log("response OK");
-        ///////////OR CANCEL TIMEOUT HERE?????????????????????????????????????????????????
         const res = await response.json();
         if (
           !res.list ||
@@ -76,16 +75,29 @@ export default function Weather() {
           !res.list[0].main ||
           !res.list[0].weather
         ) {
-          // wrong response format
-          setError(`wrong response format`);
-          throw new Error("Wrong response format");
+          // Error: wrong response format
+          setError(
+            `Received unexpected data from the server. Please try again.`
+          );
+          new Error("Wrong response format");
         } else {
           return res;
         }
       } else {
-        // Throw error
-        setError(`status ${response.status}`);
-        throw new Error(`Error: status ${response.status}`);
+        // Error statuses
+        switch (response.status) {
+          case 401:
+            setError("Invalid API key");
+            new Error(`Error: status ${response.status}`);
+            break;
+          case 404:
+            setError("No data available for this location");
+            new Error(`Error: status ${response.status}`);
+            break;
+          default:
+            setError(`Error: status ${response.status}`);
+            new Error(`Error: status ${response.status}`);
+        }
       }
     } catch (err) {
       clearTimeout(timeout);
