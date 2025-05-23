@@ -43,7 +43,7 @@ button:disabled {
   opacity: 0.6;
 }
 
-/*Loading animation*/
+/* Loading animation */
 .loader {
   text-align: center;
   font-weight: 500;
@@ -54,6 +54,15 @@ button:disabled {
   to {
     opacity: 0.3;
   }
+}
+
+/* Error message*/
+.error-message {
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 10px;
+  border-width: 3px;
+  padding: 10px;
 }
 
 /* Current day */

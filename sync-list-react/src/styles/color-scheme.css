@@ -40,6 +40,14 @@
   background-color: var(--light-color);
 }
 
+.bg-gray {
+  background-color: var(--gray-color);
+}
+
+.bg-light-gray {
+  background-color: var(--light-gray-color);
+}
+
 /* Border colors */
 .border-primary {
   border: 1px solid var(--primary-color);

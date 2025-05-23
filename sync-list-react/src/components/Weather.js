@@ -184,7 +184,11 @@ export default function Weather() {
         </button>
       </div>
 
-      {error && <p style={{ color: "red", marginTop: "1rem" }}>{error}</p>}
+      {error && (
+        <p className="error-message bg-light-gray text-accent border-accent">
+          {error}
+        </p>
+      )}
       {/*Loading state*/}
       {isLoading && !error ? (
         <p className="loader">Loading...</p>
