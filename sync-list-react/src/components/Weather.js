@@ -6,11 +6,13 @@ export default function Weather() {
   const [inputCity, setInputCity] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [resolved, setResolved] = useState(false);
   const abortControllerRef = useRef(null);
 
   const fetchWeather = async (useLocation) => {
     const timeoutSeconds = 1000 * 15;
     setError(null);
+    setResolved(false);
 
     if (
       abortControllerRef.current?.controller &&
@@ -39,18 +41,14 @@ export default function Weather() {
       setCity(inputCity);
       currentCity = inputCity;
     }
-    console.log("input =", inputCity);
-    console.log("city =", city);
-    console.log(currentCity);
+
     console.log("Loading...");
     setIsLoading(true);
-    ///getCoordinates(city, controller)
+
     getCoordinates(currentCity, timeoutSeconds)
       .then((coord) => {
         getWeatherResponse(coord, controller, timeout).then((res) => {
-          ///////////CANCEL TIMEOUT HERE?????????????????????????????????????????????????
           console.log("Got WeatherResponse");
-
           setWeather(res);
         });
       })
@@ -130,11 +128,15 @@ export default function Weather() {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          if (resolved) return;
+          setResolved(true);
           const { latitude, longitude } = position.coords;
           resolve({ lat: latitude, lon: longitude });
           setError(null);
         },
         (error) => {
+          if (resolved) return;
+          setResolved(true);
           console.error("Geolocation error:", error.message);
           reject(error);
         }
