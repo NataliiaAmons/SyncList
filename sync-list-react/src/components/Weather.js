@@ -36,6 +36,11 @@ export default function Weather() {
     <div className="widget-container bg-primary text-light">
       {/*Submit form*/}
       <div>
+        <div className="widget-title">
+          <p>
+            <i className="fa-solid fa-wind"></i> Weather
+          </p>
+        </div>
         <form
           className="form-city"
           onSubmit={(e) => {

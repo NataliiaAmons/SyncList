@@ -8,6 +8,13 @@
   margin-left: 100px;
 }
 
+.widget-title {
+  text-align: center;
+  font-size: 35px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
 /* Forms and buttons */
 .form-city {
   display: flex;
