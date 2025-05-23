@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useForm } from "react";
 
 export default function Weather() {
   const [openWeather, setWeather] = useState({});
@@ -32,86 +32,9 @@ export default function Weather() {
       .finally(() => setIsLoading(false));
   };
 
-  if (isLoading) {
-    return <p>Loading weather...</p>;
-  }
-
-  if (openWeather.list) {
-    const byDays = divideByDate(openWeather.list);
-    const current = byDays[0].list[0];
-    const currentDate = new Date(current.dt_txt.split(" ")[0]);
-    return (
-      <div className="widget-container bg-primary text-light">
-        <div>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              fetchWeather(false);
-            }}
-          >
-            <input
-              className="city-input"
-              type="text"
-              placeholder="City"
-              value={inputCity}
-              onChange={(e) => setInputCity(e.target.value)}
-            ></input>
-            <button type="submit" className="weather-button">
-              Get weather
-            </button>
-          </form>
-          <button className="weather-button" onClick={() => fetchWeather(true)}>
-            Get weather
-          </button>
-        </div>
-        <div className="current-day">
-          <p className="current-temp">{`${Math.round(current.main.temp)}°`}</p>
-          <p className="current-descript text-secondary">
-            {current.weather[0].description}
-          </p>
-          <img
-            className="current-weather-icon"
-            src={`https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`}
-            alt="condition"
-          />
-          <div className="current-info">
-            <p className="current-city text-secondary">{`${openWeather.city.name}, ${openWeather.city.country}`}</p>
-            <div className="current-date">
-              <span className="current-weekday text-secondary">
-                {getWeekday(current.dt_txt.split(" ")[0])}
-              </span>
-              <span className="current-date-text">
-                {currentDate.toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="next-days">
-          {byDays.slice(1, 5).map((day) => {
-            return (
-              <div key={day.date} className="one-day">
-                <p className="one-weekday text-secondary">
-                  {getWeekday(day.date)}
-                </p>
-                <img
-                  src={`https://openweathermap.org/img/wn/${day.list[0].weather[0].icon}.png`}
-                  alt="condition"
-                />
-                <p>{`${Math.round(getMaxTemp(day.list))}° / ${Math.round(
-                  getMinTemp(day.list)
-                )}°`}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  } else {
-    return (
+  return (
+    <div className="widget-container bg-primary text-light">
+      {/*Submit form*/}
       <div>
         <form
           onSubmit={(e) => {
@@ -126,16 +49,86 @@ export default function Weather() {
             value={inputCity}
             onChange={(e) => setInputCity(e.target.value)}
           ></input>
-          <button type="submit" className="weather-button">
+          <button
+            type="submit"
+            className="weather-button"
+            disabled={isLoading || inputCity.trim() === ""}
+          >
             Get weather
           </button>
         </form>
-        <button className="weather-button" onClick={() => fetchWeather(true)}>
-          Get weather
+        <button
+          className="weather-button"
+          onClick={() => fetchWeather(true)}
+          disabled={isLoading}
+        >
+          Use geolocation
         </button>
       </div>
-    );
-  }
+
+      {/*Loading state*/}
+      {isLoading ? (
+        <p>Loading weather...</p>
+      ) : openWeather.list ? (
+        (() => {
+          //Render API response
+          const byDays = divideByDate(openWeather.list);
+          const current = byDays[0].list[0];
+          const currentDate = new Date(current.dt_txt.split(" ")[0]);
+          return (
+            <div>
+              <div className="current-day">
+                <p className="current-temp">{`${Math.round(
+                  current.main.temp
+                )}°`}</p>
+                <p className="current-descript text-secondary">
+                  {current.weather[0].description}
+                </p>
+                <img
+                  className="current-weather-icon"
+                  src={`https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`}
+                  alt="condition"
+                />
+                <div className="current-info">
+                  <p className="current-city text-secondary">{`${openWeather.city.name}, ${openWeather.city.country}`}</p>
+                  <div className="current-date">
+                    <span className="current-weekday text-secondary">
+                      {getWeekday(current.dt_txt.split(" ")[0])}
+                    </span>
+                    <span className="current-date-text">
+                      {currentDate.toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="next-days">
+                {byDays.slice(1, 5).map((day) => {
+                  return (
+                    <div key={day.date} className="one-day">
+                      <p className="one-weekday text-secondary">
+                        {getWeekday(day.date)}
+                      </p>
+                      <img
+                        src={`https://openweathermap.org/img/wn/${day.list[0].weather[0].icon}.png`}
+                        alt="condition"
+                      />
+                      <p>{`${Math.round(getMaxTemp(day.list))}° / ${Math.round(
+                        getMinTemp(day.list)
+                      )}°`}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()
+      ) : null}
+    </div>
+  );
 }
 
 function getWeatherLink(location) {
