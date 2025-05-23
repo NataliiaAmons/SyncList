@@ -9,7 +9,7 @@ import Weather from "./components/Weather";
 
 function App() {
   return (
-    <div className="body">
+    <div className="body bg-neutral">
       <Header></Header>
       <div className="content">
         <Weather></Weather>

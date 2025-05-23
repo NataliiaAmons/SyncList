@@ -33,12 +33,13 @@ export default function Weather() {
   };
 
   return (
-    <div className="widget-container bg-primary text-light">
+    <div className="widget-container bg-primary text-light shadow-light-gray-corner">
       {/*Submit form*/}
       <div>
         <div className="widget-title">
           <p>
-            <i className="fa-solid fa-wind"></i> Weather
+            <i className="fa-solid fa-wind"></i>
+            Weather
           </p>
         </div>
         <form
@@ -74,7 +75,7 @@ export default function Weather() {
 
       {/*Loading state*/}
       {isLoading ? (
-        <p>Loading weather...</p>
+        <p className="loader">Loading...</p>
       ) : openWeather.list ? (
         (() => {
           //Render API response
