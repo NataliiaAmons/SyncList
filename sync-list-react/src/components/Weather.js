@@ -1,12 +1,37 @@
-import React, { useEffect, useState, useForm } from "react";
+import React, { useEffect, useRef, useState, useForm } from "react";
 
 export default function Weather() {
   const [openWeather, setWeather] = useState({});
   const [city, setCity] = useState("");
   const [inputCity, setInputCity] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const abortControllerRef = useRef(null);
 
   const fetchWeather = async (useLocation) => {
+    const timeoutSeconds = 1000 * 15;
+    setError(null);
+
+    if (
+      abortControllerRef.current?.controller &&
+      !abortControllerRef.current.controller.signal.aborted
+    ) {
+      abortControllerRef.current.controller.abort();
+      clearTimeout(abortControllerRef.current.timeoutId);
+    }
+
+    const controller = new AbortController();
+
+    const timeout = setTimeout(() => {
+      controller.abort();
+      setWeather({});
+    }, timeoutSeconds);
+
+    abortControllerRef.current = {
+      controller,
+      timeout,
+    };
+
     var currentCity;
     if (useLocation) {
       currentCity = "";
@@ -19,10 +44,13 @@ export default function Weather() {
     console.log(currentCity);
     console.log("Loading...");
     setIsLoading(true);
-    getCoordinates(currentCity)
+    ///getCoordinates(city, controller)
+    getCoordinates(currentCity, timeoutSeconds)
       .then((coord) => {
-        getWeatherResponse(coord).then((res) => {
+        getWeatherResponse(coord, controller, timeout).then((res) => {
+          ///////////CANCEL TIMEOUT HERE?????????????????????????????????????????????????
           console.log("Got WeatherResponse");
+
           setWeather(res);
         });
       })
@@ -32,14 +60,83 @@ export default function Weather() {
       .finally(() => setIsLoading(false));
   };
 
+  async function getWeatherResponse(location, controller, timeout) {
+    const link = getWeatherLink(location);
+    try {
+      let response = await fetch(link, { signal: controller.signal });
+      clearTimeout(timeout);
+      console.log("clearTimeout");
+      if (response.ok) {
+        console.log("response OK");
+        ///////////OR CANCEL TIMEOUT HERE?????????????????????????????????????????????????
+        const res = await response.json();
+        if (
+          !res.list ||
+          !res.city ||
+          !res.list[0].main ||
+          !res.list[0].weather
+        ) {
+          // wrong response format
+          setError(`wrong response format`);
+          throw new Error("Wrong response format");
+        } else {
+          return res;
+        }
+      } else {
+        // Throw error
+        setError(`status ${response.status}`);
+        throw new Error(`Error: status ${response.status}`);
+      }
+    } catch (err) {
+      clearTimeout(timeout);
+      if (err.name === "AbortError") {
+        setError("Location request timed out. Please try again.");
+        console.log(new Error("Request timeout"));
+      } else {
+        setError(err.message || "Unexpected error");
+      }
+    }
+  }
+
+  async function getCoordinates(city, timeoutSeconds) {
+    if (city) {
+      return city;
+    } else {
+      const coord = await Promise.race([
+        getGeolocation(),
+        new Promise((resolve, _) =>
+          setTimeout(() => {
+            resolve(setError(null));
+          }, timeoutSeconds)
+        ),
+      ]);
+      return coord;
+    }
+  }
+
+  async function getGeolocation() {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          resolve({ lat: latitude, lon: longitude });
+          setError(null);
+        },
+        (error) => {
+          console.error("Geolocation error:", error.message);
+          reject(error);
+        }
+      );
+    });
+  }
+
   return (
     <div className="widget-container bg-primary text-light shadow-light-gray-corner">
       {/*Submit form*/}
       <div>
         <div className="widget-title">
           <p>
-            <i className="fa-solid fa-wind"></i>
-            Weather
+            <i className="fa-solid fa-wind"></i> Weather
           </p>
         </div>
         <form
@@ -73,10 +170,11 @@ export default function Weather() {
         </button>
       </div>
 
+      {error && <p style={{ color: "red", marginTop: "1rem" }}>{error}</p>}
       {/*Loading state*/}
-      {isLoading ? (
+      {isLoading && !error ? (
         <p className="loader">Loading...</p>
-      ) : openWeather.list ? (
+      ) : openWeather && openWeather.list ? (
         (() => {
           //Render API response
           const byDays = divideByDate(openWeather.list);
@@ -147,40 +245,6 @@ function getWeatherLink(location) {
   }
   console.log("Empty link");
   return "";
-}
-
-async function getWeatherResponse(location) {
-  const link = getWeatherLink(location);
-  let response = await fetch(link);
-  if (response.ok) {
-    return response.json();
-  }
-  console.log("We got error");
-  return {};
-}
-
-async function getCoordinates(city) {
-  if (city) {
-    return city;
-  } else {
-    const coord = await getGeolocation();
-    return coord;
-  }
-}
-
-async function getGeolocation() {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        resolve({ lat: latitude, lon: longitude });
-      },
-      (error) => {
-        console.error("Geolocation error:", error.message);
-        reject(error);
-      }
-    );
-  });
 }
 
 function divideByDate(forecasts) {
