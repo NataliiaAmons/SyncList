@@ -1,0 +1,236 @@
+p, label, input, textarea, button{
+    font-family: "Quicksand", sans-serif;
+    font-size: 25px;
+    margin: 0px;
+}
+
+
+
+/* Purchase header */
+.purchase-header{
+    display: flex;
+    flex-direction: row;
+    align-items: bottom;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 100px;
+    padding: 10px;
+
+    border-radius: 10px;
+}
+
+.purchase-name{
+    font-size: 40px;
+    font-weight: 500;
+    padding-left: 65px;
+    flex: 3;
+}
+
+.purchase-due-date{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.purchase-members{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+/* Purchase product lists */
+.purchase-tasks{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;  
+}
+
+.list-name{
+    font-size: 25px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.all-tasks{
+    flex: 1;
+    max-width: 800px;
+}
+
+.claimed-tasks{
+    flex: 1;
+    max-width: 800px;
+}
+
+
+
+/* Product list headers */
+.all-tasks-header, .claimed-tasks-header {
+    display:flex;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    position: relative;
+    border-radius: 10px;
+}
+
+.all-tasks-header span, .claimed-tasks-header span{
+    flex: 1;
+}
+
+.add-product-button{
+    font-size: 17px;
+    position: absolute;
+    right: 10px;
+}
+
+
+
+
+/* Products list items */
+ul {
+    font-family: "Quicksand", sans-serif;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+.checkbox{
+    margin: 0px;
+}
+
+li{
+    margin: 5px;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: top;
+    padding-top:15px;
+}
+
+li p {
+    font-size: 16px;
+    margin-left: 40px;
+}
+
+label {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.li-label-and-checkbox {
+    display: flex;
+    align-items: center;
+    padding-right: 40px;
+    padding-top: 0px;
+}
+
+.claimed-by-info{
+    display: flex;
+    align-items: center;
+    margin-left: 21px;
+    margin-top: 10px;
+}
+
+.claimed-by-info img {
+    height: 20px;   
+    border-radius: 15px;
+    margin-right: 5px;
+}
+
+.li-picture {
+    height: 100px;
+}
+
+.li-notes {
+    font-size: 20px; 
+    margin: 0 10px;
+    display: -webkit-box;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;  
+    overflow: hidden; 
+}
+
+.li-name-user-picture {
+    display: flex;
+}
+
+@media (max-width: 800px) {
+    li {
+      flex-direction: column;
+    }
+}
+
+
+
+
+
+
+/* li grid */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr auto;
+    grid-auto-rows: auto;
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+
+.li-label-and-quantity {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+
+    align-self: center;
+}
+
+.claimed-by-info {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+
+    align-self: center;
+}
+
+.li-picture {
+    grid-column: 3 / 4;
+    grid-row: 1 / 4;
+
+    place-self: center;
+}
+
+.li-notes {
+    grid-column: 2 / 3;
+    grid-row: 1 / 5;
+
+    align-self: start;
+    justify-self: start;
+}
+
+@media (max-width: 1200px){ 
+    /* Products */
+    .container{
+        grid-template-columns: 1fr 1fr auto;       
+    }
+
+    .li-picture {
+        grid-column: 2 / 3;
+        grid-row: 1 / 4;
+    
+        place-self: center;
+    }
+    
+    .li-notes {
+        grid-column: 1 / 3;
+        grid-row: 4 / 5;
+    
+        align-self: start;
+        justify-self: center;
+
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+    }
+}

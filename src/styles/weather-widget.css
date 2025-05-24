@@ -1,0 +1,29 @@
+p,
+label,
+input,
+textarea,
+button {
+  font-family: "Quicksand", sans-serif;
+  font-size: 25px;
+  margin: 0px;
+}
+
+.widget-container {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 10px;
+
+  border-radius: 10px;
+  gap: 50px;
+}
+
+.weather-widget {
+  height: 263px;
+  width: 540px;
+  text-align: center;
+  align-content: center;
+  padding: 20px;
+}

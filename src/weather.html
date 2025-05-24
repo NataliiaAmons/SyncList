@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"></head>
+      <title>Weather</title>
+
+      <link rel="stylesheet" href="styles/color-scheme.css">
+      <link rel="stylesheet" href="styles/global.css">
+      <link rel="stylesheet" href="styles/header.css">
+      <link rel="stylesheet" href="styles/footer.css">
+      <link rel="stylesheet" href="styles/weather-widget.css">
+      <link rel="stylesheet" href="styles/purchase-folder.css">
+
+      <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    </head>
+  <body class = "bg-neutral">
+
+    <div class = "header bg-support border-bottom-gray">
+
+      <div class = "left-section">
+        <img class="logo-image" src="images\synclist-high-resolution-logo.png" alt="logo"> 
+      </div>
+
+      <div class = "middle-section">
+        <p class="header-link text-dark">All lists</p>
+        <p class="header-link text-dark">Claimed tasks</p>
+        <p class="header-link text-dark">Upcoming</p>
+        <p class="header-link text-dark">Friends</p>
+      </div>
+
+      <div class = "right-section">
+        <img class="profile-picture" src="images\user-profile-picture.jpg" alt="profile picture">
+        <p class="username-header text-dark">Nataliia</p>
+      </div>
+    </div>
+    <div class="content">
+      <div class = "widget-container">
+
+        <div class="folders-container"> 
+          <div class="purchase-folder">
+            <p class="folder-name border-bottom-gray">Friends</p>
+            <div class="purchases-container">
+              <div class='purchase bg-light border-gray shadow-light-gray-corner'>
+                <p class="purchase-name">BBQ Party</p>
+                <p class="purchase-members">14 members</p>
+                <p class="purchase-deadline text-accent">
+                  <span class='deadline-label'>Deadline: </span>
+                  28.06.2025
+                </p>
+              </div>
+              <div class='purchase bg-light border-gray shadow-light-gray-corner'>
+                <p class="purchase-name">Camping Trip</p>
+                <p class="purchase-members">10 members</p>
+                <p class="purchase-deadline text-accent">
+                  <span class='deadline-label'>Deadline: </span>
+                  07.06.2025
+                </p>
+              </div>
+              <div class='purchase bg-light border-gray shadow-light-gray-corner'>
+                <p class="purchase-name">Movie Night</p>
+                <p class="purchase-members">5 members</p>
+                <p class="purchase-deadline text-accent">
+                  <span class='deadline-label'>Deadline: </span>
+                  22.06.2025
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="purchase-folder">
+            <p class="folder-name border-bottom-gray">Family</p>
+            <div class="purchases-container">
+              <div class='purchase bg-light border-gray shadow-light-gray-corner'>
+                <p class="purchase-name">Weekly Groceries</p>
+                <p class="purchase-members">4 members</p>
+              </div>
+              <div class='purchase bg-light border-gray shadow-light-gray-corner'>
+                <p class="purchase-name">Holiday Dinner</p>
+                <p class="purchase-members">4 members</p>
+                <p class="purchase-deadline text-accent">
+                  <span class='deadline-label'>Deadline: </span>
+                  05.08.2025
+                </p>
+              </div>
+              <div class='purchase bg-light border-gray shadow-light-gray-corner'>
+                <p class="purchase-name">Back-to-School Supplies</p>
+                <p class="purchase-members">4 members</p>
+                <p class="purchase-deadline text-accent">
+                  <span class='deadline-label'>Deadline: </span>
+                  25.08.2025
+                </p>
+              </div>
+              <div class='purchase bg-light border-gray shadow-light-gray-corner'>
+                <p class="purchase-name">House Cleaning Restock</p>
+                <p class="purchase-members">2 members</p>
+              </div>
+              <div class='purchase bg-light border-gray shadow-light-gray-corner'>
+                <p class="purchase-name">Family Vacation</p>
+                <p class="purchase-members">4 members</p>
+                <p class="purchase-deadline text-accent">
+                  <span class='deadline-label'>Deadline: </span>
+                  10.06.2025
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="purchase-folder">
+            <p class="folder-name border-bottom-gray">Work</p>
+            <div class="purchases-container">
+              <div class='purchase bg-light border-gray shadow-light-gray-corner'>
+                <p class="purchase-name">Office Party</p>
+                <p class="purchase-members">23 members</p>
+                <p class="purchase-deadline text-accent">
+                  <span class='deadline-label'>Deadline: </span>
+                  30.05.2025
+                </p>
+              </div>
+              <div class='purchase bg-light border-gray shadow-light-gray-corner'>
+                <p class="purchase-name">Secret Santa Gifts</p>
+                <p class="purchase-members">23 members</p>
+                <p class="purchase-deadline text-accent">
+                  <span class='deadline-label'>Deadline: </span>
+                  17.12.2025
+                </p>
+              </div>
+              <div class='purchase bg-light border-gray shadow-light-gray-corner'>
+                <p class="purchase-name">Monthly Coffee/Tea Stock</p>
+                <p class="purchase-members">23 members</p>
+                <p class="purchase-deadline text-accent">
+                  <span class='deadline-label'>Deadline: </span>
+                  30.05.2025
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weather-widget bg-primary">
+          <label>Weather Widget</label>
+        </div>
+
+      </div>
+    </div> 
+    <footer class = "bg-support border-top-gray">
+      <div class = "footer-container">
+        <div>
+        <img class="footer-logo" src="images\synclist-high-resolution-logo.png" alt="logo"> 
+        </div>
+        <p id="tagline">Sync, Share, and Shop Together.</p>
+
+        <table>
+          <tr>
+            <th>Features</th>
+            <th>Resources</th>
+            <th>Company</th>
+            <th>Get Started</th>
+          </tr>
+          <tr>
+            <td>Why SyncList</td>
+            <td>SyncList News</td>
+            <td>About Us</td>
+            <td>Sign Up for free</td>
+          </tr>
+          <tr>
+            <td>How it works</td>
+            <td>Product Updates</td>
+            <td>Careers</td>
+            <td>Log In</td>
+          </tr>
+          <tr>
+            <td>Forum</td>
+            <td>Help Center</td>
+            <td>Press </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Contact Us</td>
+            <td></td>
+          </tr>
+        </table> 
+
+        <div class="social-icons">
+            <i class="text-dark fa-brands fa-facebook"></i>
+            <i class="text-dark fa-brands fa-twitter"></i>
+            <i class="text-dark fa-brands fa-youtube"></i>
+            <i class="text-dark fa-brands fa-instagram"></i>
+        </div>
+
+        <p class="copyright text-dark-gray">© 2025 Nataliia Amons</p>
+        
+
+      </div>
+    </footer>
+
+  </body>
+  <script src="scripts/weather-widget.js" defer></script>
+</html>
+    
+    
