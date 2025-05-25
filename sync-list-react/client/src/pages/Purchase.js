@@ -53,16 +53,18 @@ function Purchase() {
             <PurchaseHeader info={info} members={members}></PurchaseHeader>
             <div className="purchase-tasks">
               <ul className="all-tasks">
-                <div className="all-tasks-header bg-secondary border-gray">
+                <div className="all-tasks-header bg-secondary border-gray shadow-light-gray-corner">
                   <span className="list-name text-dark">All products</span>
-                  <button className="add-product-button">Add product</button>
+                  <button className="add-product-button bg-support">
+                    Add product
+                  </button>
                 </div>
                 {otherItems.map((item) => {
                   return <PurchaseItem item={item}></PurchaseItem>;
                 })}
               </ul>
               <ul className="claimed-tasks">
-                <div className="claimed-tasks-header bg-primary border-gray">
+                <div className="claimed-tasks-header bg-primary border-gray shadow-light-gray-corner">
                   <span className="list-name text-neutral">
                     Claimed products
                   </span>

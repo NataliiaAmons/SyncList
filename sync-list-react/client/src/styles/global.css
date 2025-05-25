@@ -12,7 +12,7 @@ button {
 p {
   margin: 0px;
 }
-
+/*
 button {
   padding: 10px 0px;
   width: 100%;
@@ -37,10 +37,9 @@ button:disabled {
 }
 button:disabled:hover {
   cursor: not-allowed;
-}
+}*/
 
 input {
-  width: 100%;
   padding: 12px 20px;
   display: inline-block;
   border-radius: 10px;
