@@ -139,3 +139,11 @@
 .hover-light-gray:hover {
   background-color: var(--light-gray-color);
 }
+
+.hover-neutral {
+  transition: color 0.15s;
+}
+
+.hover-neutral:hover {
+  background-color: var(--neutral-color);
+}
