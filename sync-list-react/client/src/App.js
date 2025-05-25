@@ -6,10 +6,15 @@ import "./styles/weather-widget.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Weather from "./components/Weather";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Purchase from "./pages/Purchase";
 
 function App() {
   const [data, setData] = useState();
+
+  const userId = 2;
+  const purchaseId = 2;
 
   useEffect(() => {
     fetch("http://localhost:5000/")
@@ -24,10 +29,17 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1>Message from server:</h1>
-      <p>{data}</p>
-    </div>
+    <Router>
+      <nav>
+        <Link to={`/purchase?id=${purchaseId}&user=${userId}`}>Purchase</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home data={data} />} />
+        <Route path={`/purchase`} element={<Purchase />} />
+      </Routes>
+    </Router>
+
     /*
     <div className="body bg-neutral">
       <Header></Header>
@@ -38,6 +50,15 @@ function App() {
       <Footer></Footer>
     </div>
     */
+  );
+}
+
+function Home({ data }) {
+  return (
+    <div>
+      <h1>Message from server:</h1>
+      <p>{data}</p>
+    </div>
   );
 }
 
