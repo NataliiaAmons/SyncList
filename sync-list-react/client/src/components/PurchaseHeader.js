@@ -6,13 +6,13 @@ export default function PurchaseHeader({ info, members }) {
     return (
       <div className="purchase-header bg-light border-gray text-dark shadow-light-gray-corner">
         <p className="purchase-name">{info.name}</p>
-        <div className="purchase-due-date">
+        <div className="purchase-due-date hover-neutral">
           <p>Due date:</p>
           <p className="due-date text-accent">
             {deadlineDate.toISOString().split("T")[0]}
           </p>
         </div>
-        <div className="purchase-members">
+        <div className="purchase-members hover-neutral">
           <p>
             {members.length === 1 ? `1 member` : `${members.length} members`}
           </p>

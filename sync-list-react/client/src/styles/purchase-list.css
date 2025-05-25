@@ -46,6 +46,11 @@ button {
   justify-content: center;
 }
 
+.purchase-due-date,
+.purchase-members {
+  border-radius: 10px;
+}
+
 /* Purchase product lists */
 .purchase-tasks {
   display: flex;
@@ -94,6 +99,10 @@ button {
   text-transform: uppercase;
 }
 
+.add-product-button:hover {
+  opacity: 0.7;
+}
+
 /* Products list items */
 ul {
   font-family: "Quicksand", sans-serif;
@@ -109,13 +118,12 @@ ul {
 li {
   margin: 5px;
   border-radius: 12px;
-
   display: flex;
   align-items: top;
   padding-top: 15px;
 }
 
-li p {
+*/ li p {
   font-size: 16px;
   margin-left: 40px;
 }
@@ -149,6 +157,8 @@ label {
 
 .li-picture {
   height: 100px;
+  width: 100px;
+  object-fit: cover;
 }
 
 .li-notes {
@@ -211,7 +221,7 @@ label {
 
 @media (max-width: 1200px) {
   /* Products */
-  .container {
+  .li-container {
     grid-template-columns: 1fr 1fr auto;
   }
 
@@ -220,6 +230,7 @@ label {
     grid-row: 1 / 4;
 
     place-self: center;
+    padding-bottom: 10px;
   }
 
   .li-notes {

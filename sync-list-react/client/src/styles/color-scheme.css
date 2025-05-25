@@ -130,3 +130,12 @@
 .shadow-light-gray-corner {
   box-shadow: 5px 5px 10px var(--light-gray-color);
 }
+
+/* hover */
+.hover-light-gray {
+  transition: color 0.15s;
+}
+
+.hover-light-gray:hover {
+  background-color: var(--light-gray-color);
+}

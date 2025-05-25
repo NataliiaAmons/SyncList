@@ -3,7 +3,7 @@ import React from "react";
 export default function PurchaseItem({ item }) {
   if (item) {
     return (
-      <li className="li-container bg-light border-gray shadow-light-gray-corner">
+      <li className="li-container bg-light border-gray shadow-light-gray-corner hover-neutral">
         <div className="li-label-and-checkbox">
           <input
             className="checkbox"
