@@ -60,7 +60,9 @@ function Purchase() {
                   </button>
                 </div>
                 {otherItems.map((item) => {
-                  return <PurchaseItem item={item}></PurchaseItem>;
+                  return (
+                    <PurchaseItem item={item} user_id={user}></PurchaseItem>
+                  );
                 })}
               </ul>
               <ul className="claimed-tasks">
@@ -70,7 +72,9 @@ function Purchase() {
                   </span>
                 </div>
                 {userItems.map((item) => {
-                  return <PurchaseItem item={item}></PurchaseItem>;
+                  return (
+                    <PurchaseItem item={item} user_id={user}></PurchaseItem>
+                  );
                 })}
               </ul>
             </div>

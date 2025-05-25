@@ -62,7 +62,8 @@ async function getPurchaseOtherItems(purchase, user) {
       SELECT * FROM items i
       LEFT JOIN users u 
       ON u.id_user = i.id_claimed_by
-      WHERE id_purchase = ${purchase} AND (id_claimed_by IS DISTINCT FROM ${user})`);
+      WHERE id_purchase = ${purchase} AND (id_claimed_by IS DISTINCT FROM ${user})
+      ORDER BY (id_claimed_by IS NOT NULL)`);
     const items = result.rows;
     return items;
   } catch (err) {

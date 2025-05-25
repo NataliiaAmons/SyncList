@@ -147,3 +147,7 @@
 .hover-neutral:hover {
   background-color: var(--neutral-color);
 }
+
+.transparent {
+  opacity: 0;
+}
