@@ -10,7 +10,7 @@ function setThemeByTime(req, res, next) {
   }
 
   const hour = new Date().getHours();
-  const timeTheme = hour >= 11 || hour < 6 ? "night" : "day";
+  const timeTheme = hour >= 21 || hour < 6 ? "night" : "day";
   console.log(`Hour: ${hour}, setting theme: ${timeTheme}`);
 
   if (req.cookies.theme !== timeTheme) {

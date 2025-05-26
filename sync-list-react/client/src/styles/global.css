@@ -40,14 +40,19 @@ button:disabled:hover {
   cursor: not-allowed;
 }
 
-input {
+input,
+textarea {
   padding: 12px 20px;
   display: inline-block;
   border-radius: 10px;
   box-sizing: border-box;
   font-size: 21px;
+  color: var(--dark-color);
+  font-weight: 550;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: var(--dark-gray-color);
+  font-weight: 400;
 }

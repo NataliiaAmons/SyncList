@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 
+import EditItemForm from "../components/EditItemForm";
+
 export default function PurchaseItem({ item, user_id }) {
   const [isChecked] = useState(
     item.id_claimed_by === Number(user_id) && item.completed
   );
+
+  const [seenEditItemForm, setSeenEditItemForm] = useState(false);
+  function toggleEditItemForm() {
+    setSeenEditItemForm(!seenEditItemForm);
+  }
 
   if (item) {
     return (
@@ -59,6 +66,21 @@ export default function PurchaseItem({ item, user_id }) {
         {item.completed && (
           <i className="done-checkmark text-green fa-solid fa-check"></i>
         )}
+        <div className="manipulate-container">
+          <i
+            className="fa-solid fa-pen text-dark manipulate-icon"
+            id="edit-icon"
+            onClick={toggleEditItemForm}
+          ></i>
+          {seenEditItemForm ? (
+            <EditItemForm toggleForm={toggleEditItemForm} item={item} />
+          ) : null}
+
+          <i
+            className="fa-solid fa-trash text-dark manipulate-icon"
+            id="delete-icon"
+          ></i>
+        </div>
       </li>
     );
   }

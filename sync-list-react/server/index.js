@@ -27,22 +27,6 @@ app.use(uploadRoutes);
 const themeRoutes = require("./routes/theme");
 app.use(themeRoutes);
 
-app.use((req, res, next) => {
-  if (req.cookies.themeUserSet) return next();
-
-  const hour = new Date().getHours();
-  const timeTheme = hour >= 15 || hour < 7 ? "night" : "day";
-
-  if (req.cookies.theme !== timeTheme) {
-    res.cookie("theme", timeTheme, {
-      maxAge: 1000 * 60 * 60 * 24 * 365,
-      httpOnly: false,
-      sameSite: "lax",
-    });
-  }
-  next();
-});
-
 app.get("/", (req, res) => {
   res.json({ message: `Connected to server on port ${PORT}` });
 });
