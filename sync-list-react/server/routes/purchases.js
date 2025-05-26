@@ -9,8 +9,8 @@ async function getPurchaseInfo(id) {
     const result = await db.query(
       `
       SELECT * FROM purchases
-      WHERE id_purchase = ${id}
-    `
+      WHERE id_purchase = $1`,
+      [id]
     );
     const purchaseInfo = result.rows[0];
     return purchaseInfo;
@@ -23,7 +23,8 @@ async function getPurchaseInfo(id) {
 // get purchase members
 async function getPurchaseMembers(id) {
   try {
-    const result = await db.query(`
+    const result = await db.query(
+      `
       SELECT username, profile_picture  
       FROM purchases p
       JOIN users u ON u.id_user = p.id_owner OR u.id_user IN (
@@ -31,7 +32,9 @@ async function getPurchaseMembers(id) {
         FROM members_in_purchases mip
         WHERE mip.id_purchase = p.id_purchase
       )
-      WHERE p.id_purchase = ${id}`);
+      WHERE p.id_purchase = $1`,
+      [id]
+    );
     const members = result.rows;
     return members;
   } catch (err) {
@@ -43,11 +46,14 @@ async function getPurchaseMembers(id) {
 // get purchase items
 async function getPurchaseUserItems(purchase, user) {
   try {
-    const result = await db.query(`
+    const result = await db.query(
+      `
       SELECT * FROM items i
       LEFT JOIN users u 
       ON u.id_user = i.id_claimed_by
-      WHERE id_purchase = ${purchase} AND id_claimed_by = ${user}`);
+      WHERE id_purchase = $1 AND id_claimed_by = $2`,
+      [purchase, user]
+    );
     const items = result.rows;
     return items;
   } catch (err) {
@@ -58,12 +64,15 @@ async function getPurchaseUserItems(purchase, user) {
 
 async function getPurchaseOtherItems(purchase, user) {
   try {
-    const result = await db.query(`
+    const result = await db.query(
+      `
       SELECT * FROM items i
       LEFT JOIN users u 
       ON u.id_user = i.id_claimed_by
-      WHERE id_purchase = ${purchase} AND (id_claimed_by IS DISTINCT FROM ${user})
-      ORDER BY (id_claimed_by IS NOT NULL)`);
+      WHERE id_purchase = $1 AND (id_claimed_by IS DISTINCT FROM $2)
+      ORDER BY (id_claimed_by IS NOT NULL)`,
+      [purchase, user]
+    );
     const items = result.rows;
     return items;
   } catch (err) {

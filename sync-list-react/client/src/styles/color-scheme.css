@@ -12,6 +12,20 @@
   --green-color: #50c564;
 }
 
+body.night {
+  --primary-color: #fed9b7;
+  --secondary-color: #00afb9;
+  --support-color: #005256;
+  --accent-color: #f07167;
+  --neutral-color: #011118;
+  --dark-color: #fff6ee;
+  --light-color: #082c3d;
+  --gray-color: #142c38;
+  --light-gray-color: #122027;
+  --dark-gray-color: #a7a5a3;
+  --green-color: #50c564;
+}
+
 /* Background colors */
 .bg-primary {
   background-color: var(--primary-color);

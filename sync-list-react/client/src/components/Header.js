@@ -1,4 +1,5 @@
 import React from "react";
+import ThemeSwitch from "./ThemeSwitch";
 
 export default function Header() {
   return (
@@ -15,6 +16,7 @@ export default function Header() {
       </div>
 
       <div className="right-section">
+        <ThemeSwitch />
         <img
           className="profile-picture"
           src="images\user-profile-picture.jpg"
