@@ -11,8 +11,13 @@ app.use(cors());
 
 const PORT = 5000;
 
+app.use("./uploads", express.static("uploads"));
+
 const purchaseRoutes = require("./routes/purchases");
 app.use(purchaseRoutes);
+
+const uploadRoutes = require("./routes/uploads");
+app.use(uploadRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello from Express server!" });

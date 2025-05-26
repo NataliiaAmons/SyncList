@@ -35,9 +35,10 @@ button:active {
 button:disabled {
   opacity: 0.3;
 }
+  */
 button:disabled:hover {
   cursor: not-allowed;
-}*/
+}
 
 input {
   padding: 12px 20px;

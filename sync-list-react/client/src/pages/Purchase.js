@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PurchaseHeader from "../components/PurchaseHeader";
 import PurchaseItem from "../components/PurchaseItem";
+import AddItemForm from "../components/AddItemForm";
 import { useSearchParams } from "react-router-dom";
 
 function Purchase() {
@@ -21,6 +22,11 @@ function Purchase() {
   const [searchParams] = useSearchParams();
   const user = searchParams.get("user");
   const id = searchParams.get("id");
+
+  const [seenAddItemForm, setSeenAddItemForm] = useState(false);
+  function toggleAddItemForm() {
+    setSeenAddItemForm(!seenAddItemForm);
+  }
 
   const query = new URLSearchParams({ id, user }).toString();
 
@@ -55,9 +61,18 @@ function Purchase() {
               <ul className="all-tasks">
                 <div className="all-tasks-header bg-secondary border-gray shadow-light-gray-corner">
                   <span className="list-name text-dark">All products</span>
-                  <button className="add-product-button bg-support">
+                  <button
+                    className="add-product-button bg-support"
+                    onClick={toggleAddItemForm}
+                  >
                     Add product
                   </button>
+                  {seenAddItemForm ? (
+                    <AddItemForm
+                      toggleForm={toggleAddItemForm}
+                      purchase_id={id}
+                    />
+                  ) : null}
                 </div>
                 {otherItems.map((item) => {
                   return (

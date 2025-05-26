@@ -33,7 +33,7 @@ export default function PurchaseItem({ item, user_id }) {
         {item.username ? (
           <div className="claimed-by-info">
             <img
-              className="claimed-by-profile-picture"
+              className="claimed-by-profile-picture border-gray"
               src={`images/${item.profile_picture}`}
               alt="profile"
             />
