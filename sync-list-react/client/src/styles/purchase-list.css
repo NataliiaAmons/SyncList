@@ -20,7 +20,7 @@ button {
 }
 
 .purchase-name {
-  font-size: 40px;
+  font-size: 37px;
   font-weight: 500;
   padding-left: 65px;
   flex: 3;
@@ -75,7 +75,7 @@ button {
 .claimed-tasks-header {
   display: flex;
   align-items: center;
-  margin: 10px;
+  margin: 14px 0 10px 0;
   padding: 10px;
   position: relative;
   border-radius: 10px;
@@ -116,7 +116,7 @@ ul {
 }
 
 li {
-  margin: 5px;
+  margin: 5px 0;
   border-radius: 12px;
   display: flex;
   align-items: top;
@@ -186,9 +186,25 @@ input[type="checkbox"]:disabled {
 }
 
 /* li grid */
-.li-container {
+.li-container-notes {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr auto;
+  grid-auto-rows: auto;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.li-container-no-notes {
+  display: grid;
+  grid-template-columns: 3fr 0 1fr auto;
+  grid-auto-rows: auto;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.li-container-no-notes {
+  display: grid;
+  grid-template-columns: 3fr 0 1fr auto;
   grid-auto-rows: auto;
   padding: 15px;
   margin-bottom: 10px;
@@ -233,7 +249,7 @@ input[type="checkbox"]:disabled {
 
 @media (max-width: 1200px) {
   /* Products */
-  .li-container {
+  .li-container-notes {
     grid-template-columns: 1fr 1fr auto;
   }
 

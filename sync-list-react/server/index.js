@@ -21,7 +21,7 @@ const uploadRoutes = require("./routes/uploads");
 app.use(uploadRoutes);
 
 app.get("/", (req, res) => {
-  res.json({ message: "Hello from Express server!" });
+  res.json({ message: `Connected to server on port ${PORT}` });
 });
 
 app.listen(PORT, () => {

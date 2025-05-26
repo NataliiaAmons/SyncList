@@ -13,9 +13,6 @@ import Purchase from "./pages/Purchase";
 function App() {
   const [data, setData] = useState();
 
-  const userId = 2;
-  const purchaseId = 2;
-
   useEffect(() => {
     fetch("http://localhost:5000/")
       .then((res) => res.json())
@@ -30,10 +27,6 @@ function App() {
 
   return (
     <Router>
-      <nav>
-        <Link to={`/purchase?id=${purchaseId}&user=${userId}`}>Purchase</Link>
-      </nav>
-
       <Routes>
         <Route path="/" element={<Home data={data} />} />
         <Route path={`/purchase`} element={<Purchase />} />

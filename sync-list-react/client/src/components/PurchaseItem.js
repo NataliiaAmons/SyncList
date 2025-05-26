@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import { useSearchParams } from "react-router-dom";
 
 export default function PurchaseItem({ item, user_id }) {
-  const [isChecked, setIsChecked] = useState(
+  const [isChecked] = useState(
     item.id_claimed_by === Number(user_id) && item.completed
   );
 
   if (item) {
     return (
       <li
-        className={`li-container border-gray shadow-light-gray-corner hover-neutral ${
+        className={`border-gray shadow-light-gray-corner hover-neutral ${
           item.id_claimed_by == null ||
           (item.id_claimed_by === Number(user_id) && !item.completed) // not done by current user
             ? "bg-light"
             : "bg-light-gray"
-        } `}
+        } ${
+          item.notes == null ? "li-container-no-notes" : "li-container-notes"
+        }`}
       >
         <div className="li-label-and-checkbox">
           <input
@@ -56,7 +57,7 @@ export default function PurchaseItem({ item, user_id }) {
         <p className="li-notes">{item.notes}</p>
 
         {item.completed && (
-          <i class="done-checkmark text-green fa-solid fa-check"></i>
+          <i className="done-checkmark text-green fa-solid fa-check"></i>
         )}
       </li>
     );

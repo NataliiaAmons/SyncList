@@ -76,7 +76,11 @@ function Purchase() {
                 </div>
                 {otherItems.map((item) => {
                   return (
-                    <PurchaseItem item={item} user_id={user}></PurchaseItem>
+                    <PurchaseItem
+                      key={item.id_item}
+                      item={item}
+                      user_id={user}
+                    ></PurchaseItem>
                   );
                 })}
               </ul>
@@ -88,7 +92,11 @@ function Purchase() {
                 </div>
                 {userItems.map((item) => {
                   return (
-                    <PurchaseItem item={item} user_id={user}></PurchaseItem>
+                    <PurchaseItem
+                      key={item.id_item}
+                      item={item}
+                      user_id={user}
+                    ></PurchaseItem>
                   );
                 })}
               </ul>
