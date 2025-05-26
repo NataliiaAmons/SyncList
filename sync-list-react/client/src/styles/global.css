@@ -48,7 +48,7 @@ textarea {
   box-sizing: border-box;
   font-size: 21px;
   color: var(--dark-color);
-  font-weight: 550;
+  font-weight: 500;
 }
 
 input::placeholder,

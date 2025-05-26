@@ -21,6 +21,9 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 const purchaseRoutes = require("./routes/purchases");
 app.use(purchaseRoutes);
 
+const itemRoutes = require("./routes/items");
+app.use(itemRoutes);
+
 const uploadRoutes = require("./routes/uploads");
 app.use(uploadRoutes);
 

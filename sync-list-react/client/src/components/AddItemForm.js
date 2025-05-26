@@ -20,6 +20,12 @@ export default function AddItemForm({ toggleForm, purchase_id }) {
 
   const handleAddItem = async (e) => {
     e.preventDefault();
+
+    if (!name.trim()) {
+      alert("Please enter a product name.");
+      return; // stop the function here
+    }
+
     try {
       const formData = new FormData();
       formData.append("name", name);
@@ -45,7 +51,7 @@ export default function AddItemForm({ toggleForm, purchase_id }) {
     <div className="add-product-popup" id="add-product-popup">
       <form className="add-product-form bg-light border-gray">
         <input
-          className="add-prod-name"
+          className="add-prod-name bg-light"
           type="text"
           placeholder="Product name"
           name="name"
@@ -57,7 +63,7 @@ export default function AddItemForm({ toggleForm, purchase_id }) {
           <input type="file" name="image" onChange={handleImage} />
         </div>
         <textarea
-          className="add-prod-notes"
+          className="add-prod-notes bg-light"
           name="notes"
           placeholder="Notes"
           rows="3"
@@ -70,7 +76,11 @@ export default function AddItemForm({ toggleForm, purchase_id }) {
         >
           Add product
         </button>
-        <button className="cancel-btn" type="button" onClick={toggleForm}>
+        <button
+          className="cancel-btn bg-gray"
+          type="button"
+          onClick={toggleForm}
+        >
           Cancel
         </button>
       </form>

@@ -80,7 +80,6 @@ function Purchase() {
                       key={item.id_item}
                       item={item}
                       user_id={user}
-                      item_id={item.id_item}
                     ></PurchaseItem>
                   );
                 })}
