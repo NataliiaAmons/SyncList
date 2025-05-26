@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 require("dotenv").config();
 
@@ -11,7 +12,7 @@ app.use(cors());
 
 const PORT = 5000;
 
-app.use("./uploads", express.static("uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 const purchaseRoutes = require("./routes/purchases");
 app.use(purchaseRoutes);

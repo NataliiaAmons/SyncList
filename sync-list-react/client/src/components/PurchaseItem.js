@@ -17,16 +17,20 @@ export default function PurchaseItem({ item, user_id }) {
         } `}
       >
         <div className="li-label-and-checkbox">
-          {(item.id_claimed_by == null ||
-            item.id_claimed_by === Number(user_id)) && (
-            <input
-              className="checkbox"
-              type="checkbox"
-              id="task-checkbox"
-              name="task-checkbox"
-              checked={isChecked}
-            />
-          )}
+          <input
+            className={`checkbox`}
+            type="checkbox"
+            id="task-checkbox"
+            name="task-checkbox"
+            checked={isChecked}
+            disabled={
+              // disbled and transparent if claimed by other user
+              !(
+                item.id_claimed_by == null ||
+                item.id_claimed_by === Number(user_id)
+              )
+            }
+          />
           <label htmlFor="task-checkbox">{item.name}</label>
         </div>
 
@@ -34,7 +38,7 @@ export default function PurchaseItem({ item, user_id }) {
           <div className="claimed-by-info">
             <img
               className="claimed-by-profile-picture border-gray"
-              src={`images/${item.profile_picture}`}
+              src={`http://localhost:5000/uploads/${item.profile_picture}`}
               alt="profile"
             />
             <span>{item.username}</span>
@@ -42,7 +46,11 @@ export default function PurchaseItem({ item, user_id }) {
         ) : null}
 
         {item.image ? (
-          <img className="li-picture" src={`images/${item.image}`} alt="item" />
+          <img
+            className="li-picture"
+            src={`http://localhost:5000/uploads/${item.image}`}
+            alt="item"
+          />
         ) : null}
 
         <p className="li-notes">{item.notes}</p>
