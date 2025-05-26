@@ -7,8 +7,12 @@ export default function ThemeSwitch({ initialTheme }) {
     document.body.className = theme;
     const match = document.cookie.match(/(^|;) ?theme=([^;]*)(;|$)/);
     setTheme(match ? match[2] : "day");
-    document.body.classList.toggle("night", theme === "night");
   });
+
+  useEffect(() => {
+    document.body.className = "";
+    document.body.classList.toggle("night", theme === "night");
+  }, [theme]);
 
   return (
     <div class="theme-switch-container">

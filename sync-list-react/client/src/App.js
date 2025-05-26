@@ -7,8 +7,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Weather from "./components/Weather";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Purchase from "./pages/Purchase";
+import ThemeManager from "./components/ThemeManager";
 
 function App() {
   const [data, setData] = useState();
@@ -24,25 +25,31 @@ function App() {
         console.error(error);
       });
   }, []);
-
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home data={data} />} />
-        <Route path={`/purchase`} element={<Purchase />} />
-      </Routes>
-    </Router>
-
-    /*
-    <div className="body bg-neutral">
-      <Header></Header>
-      <div className="content">
-        <div>{data}</div>
-        <Weather></Weather>
-      </div>
-      <Footer></Footer>
-    </div>
-    */
+    <>
+      <ThemeManager />
+      <Router>
+        <Routes>
+          <Route
+            className="text-dark"
+            path="/"
+            element={
+              <div className="text-dark">
+                <Home data={data} />
+              </div>
+            }
+          />
+          <Route
+            path={`/purchase`}
+            element={
+              <div className="text-dark">
+                <Purchase />
+              </div>
+            }
+          />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
