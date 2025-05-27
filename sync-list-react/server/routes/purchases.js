@@ -25,7 +25,7 @@ async function getPurchaseMembers(id) {
   try {
     const result = await db.query(
       `
-      SELECT username, profile_picture  
+      SELECT username, profile_picture, first_name, last_name  
       FROM purchases p
       JOIN users u ON u.id_user = p.id_owner OR u.id_user IN (
         SELECT mip.id_user
