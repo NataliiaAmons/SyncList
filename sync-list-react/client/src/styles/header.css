@@ -28,6 +28,11 @@
   gap: 3vw;
 }
 
+.middle-section a {
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .right-section {
   flex: 1;
   display: flex;

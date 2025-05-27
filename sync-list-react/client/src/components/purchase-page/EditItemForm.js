@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/add-product-form.css";
+import "../../styles/add-product-form.css";
 
 export default function EditItemForm({ toggleForm, item }) {
   const [editedName, setEditedName] = useState("");

@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="bg-support border-top-gray">
       <div className="footer-container">
         <div>
-          <img className="footer-logo" src="logo.png" alt="logo" />
+          <img className="footer-logo" src="/logo.png" alt="logo" />
         </div>
         <p id="tagline">Sync, Share, and Shop Together.</p>
 

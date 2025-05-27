@@ -81,7 +81,7 @@ router.patch("/claim-item", async (req, res) => {
   try {
     console.log("BODY:", req.body);
 
-    const { item_id, user_id } = req.body;
+    const { user_id, item_id } = req.body;
 
     const query = `
       UPDATE items

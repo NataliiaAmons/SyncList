@@ -56,3 +56,8 @@ textarea::placeholder {
   color: var(--dark-gray-color);
   font-weight: 400;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

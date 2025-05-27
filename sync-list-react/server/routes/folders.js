@@ -106,9 +106,10 @@ async function getFilledFolders(user) {
   return filledFolders;
 }
 
-router.get("/folders", async (req, res) => {
+router.get("/:user_id/folders", async (req, res) => {
   try {
-    const user = req.query.user;
+    const user = req.params.user_id;
+    console.log(user);
 
     const withoutFolder = await getNoFolderPurchaseInfo(user);
     const foldersInfo = await getFilledFolders(user);

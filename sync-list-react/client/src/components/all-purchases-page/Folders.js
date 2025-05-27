@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "../styles/global.css";
-import "../styles/color-scheme.css";
-import "../styles/header.css";
-import "../styles/footer.css";
-import "../styles/weather-widget.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Weather from "../components/Weather";
-import PurchaseCard from "../components/PurchaseCard";
-import { useSearchParams } from "react-router-dom";
+import "../../styles/global.css";
+import "../../styles/color-scheme.css";
+import "../../styles/header.css";
+import "../../styles/footer.css";
+import "../../styles/weather-widget.css";
+import Header from "../Header";
+import Footer from "../Footer";
+import Weather from "./Weather";
+import PurchaseCard from "./PurchaseCard";
+import { useParams, Link } from "react-router-dom";
 
 function Folders() {
   const [folders, setFolders] = useState({});
@@ -16,14 +16,20 @@ function Folders() {
 
   const [loading, setLoading] = useState(true);
 
-  const [searchParams] = useSearchParams();
-  const user = searchParams.get("user");
+  /*
+  const [searchParams] = useParams();
+  const user = searchParams.get("user_id");
 
-  const query = new URLSearchParams({ user }).toString();
+  const user_id = new URLSearchParams({ user }).toString();
+  */
+
+  const { user_id } = useParams();
+  const user = user_id;
+  console.log(user);
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/folders?${query}`)
+    fetch(`http://localhost:5000/${user}/folders`)
       .then((res) => res.json())
       .then((response) => {
         console.log(response);
@@ -37,7 +43,7 @@ function Folders() {
       .catch((error) => {
         console.error(error);
       });
-  }, [query]);
+  }, [user]);
 
   return (
     <div>
@@ -54,7 +60,9 @@ function Folders() {
                 <div className="purchase-folder">
                   <div className="purchases-container">
                     {withoutFolder.map((purchase) => (
-                      <PurchaseCard purchase={purchase} user_id={user} />
+                      <Link to={`/${user}/purchase/${purchase.id_purchase}`}>
+                        <PurchaseCard purchase={purchase} />
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -66,7 +74,9 @@ function Folders() {
                     </p>
                     <div className="purchases-container">
                       {folder.list.map((purchase) => (
-                        <PurchaseCard purchase={purchase} user_id={user} />
+                        <Link to={`/${user}/purchase/${purchase.id_purchase}`}>
+                          <PurchaseCard purchase={purchase} />
+                        </Link>
                       ))}
                     </div>
                   </div>

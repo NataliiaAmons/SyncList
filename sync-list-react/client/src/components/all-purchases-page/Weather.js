@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useForm } from "react";
-import "../styles/global.css";
-import "../styles/color-scheme.css";
-import "../styles/weather-widget.css";
+import "../../styles/global.css";
+import "../../styles/color-scheme.css";
+import "../../styles/weather-widget.css";
 
 export default function Weather() {
   const [openWeather, setWeather] = useState({});

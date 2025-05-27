@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EditItemForm from "../components/EditItemForm";
+import EditItemForm from "./EditItemForm";
 
 export default function PurchaseItem({ item, user_id }) {
   const [isChecked, setIsChecked] = useState(false);

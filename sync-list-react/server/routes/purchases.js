@@ -82,15 +82,17 @@ async function getPurchaseOtherItems(purchase, user) {
   }
 }
 
-router.get("/purchase", async (req, res) => {
+router.get("/:user_id/purchase/:purchase_id", async (req, res) => {
   try {
-    const purchase = req.query.id;
-    const user = req.query.user;
+    const { user_id, purchase_id } = req.params;
 
-    const purchaseInfo = await getPurchaseInfo(purchase);
-    const purchaseMembers = await getPurchaseMembers(purchase);
-    const userItems = await getPurchaseUserItems(purchase, user);
-    const otherItems = await getPurchaseOtherItems(purchase, user);
+    console.log("User:", user_id);
+    console.log("Purchase:", purchase_id);
+
+    const purchaseInfo = await getPurchaseInfo(purchase_id);
+    const purchaseMembers = await getPurchaseMembers(purchase_id);
+    const userItems = await getPurchaseUserItems(purchase_id, user_id);
+    const otherItems = await getPurchaseOtherItems(purchase_id, user_id);
 
     console.log(purchaseInfo, purchaseMembers, userItems, otherItems);
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import MembersList from "./MembersList";
+import "../../styles/purchase-list.css";
 
 export default function PurchaseHeader({ info, members }) {
   const deadlineDate = new Date(info.deadline);
@@ -33,8 +34,10 @@ export default function PurchaseHeader({ info, members }) {
   if (info) {
     return (
       <div className="purchase-header bg-light border-gray text-dark shadow-light-gray-corner">
-        <p className="purchase-name">{info.name}</p>
-        <div className="purchase-due-date hover-neutral">
+        <p className="purchase-name" id="purchase-name">
+          {info.name}
+        </p>
+        <div className="purchase-due-date hover-neutral" id="purchase-due-date">
           <p>Due date:</p>
           <p className="due-date text-accent">
             {deadlineDate.toISOString().split("T")[0]}
@@ -42,9 +45,10 @@ export default function PurchaseHeader({ info, members }) {
         </div>
         <div
           className="purchase-members hover-neutral"
+          id="purchase-members"
           onClick={toggleMembersList}
         >
-          <p>
+          <p id="members-number">
             {members.length === 1 ? `1 member` : `${members.length} members`}
           </p>
           {seenMembersList && (

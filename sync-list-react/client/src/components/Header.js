@@ -1,15 +1,21 @@
 import React from "react";
-import ThemeSwitch from "./ThemeSwitch";
+import ThemeSwitch from "./theme/ThemeSwitch";
+import { useParams, Link } from "react-router-dom";
 
 export default function Header() {
+  const { user_id } = useParams();
+  const user = user_id;
+
   return (
     <div className="header bg-support border-bottom-gray">
       <div className="left-section">
-        <img className="logo-image" src="logo.png" alt="logo" />
+        <img className="logo-image" src="/logo.png" alt="logo" />
       </div>
 
       <div className="middle-section">
-        <p className="header-link text-dark">All lists</p>
+        <Link to={`/${user_id}/folders`} className="hover-light">
+          <p className="header-link text-dark">All lists</p>
+        </Link>
         <p className="header-link text-dark">Claimed tasks</p>
         <p className="header-link text-dark">Upcoming</p>
         <p className="header-link text-dark">Friends</p>
@@ -19,7 +25,7 @@ export default function Header() {
         <ThemeSwitch />
         <img
           className="profile-picture"
-          src="images\user-profile-picture.jpg"
+          src="/images/user-profile-picture.jpg"
           alt="profile"
         />
         <p className="username-header text-dark">Nataliia</p>

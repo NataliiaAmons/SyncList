@@ -166,3 +166,11 @@ body.night {
 .hover-neutral:hover {
   background-color: var(--neutral-color);
 }
+
+.hover-light {
+  transition: color 0.15s;
+}
+
+.hover-light:hover {
+  background-color: var(--light-color);
+}

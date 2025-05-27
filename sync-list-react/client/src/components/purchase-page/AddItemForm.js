@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/add-product-form.css";
+import "../../styles/add-product-form.css";
 
 export default function AddItemForm({ toggleForm, purchase_id }) {
   const [name, setName] = useState("");
