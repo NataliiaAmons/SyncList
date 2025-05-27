@@ -151,7 +151,7 @@ export default function Weather() {
     <div className="widget-container bg-primary text-light shadow-light-gray-corner">
       {/*Submit form*/}
       <div>
-        <div className="widget-title">
+        <div className="widget-title" id="widget-title">
           <p>
             <i className="fa-solid fa-wind"></i> Weather
           </p>

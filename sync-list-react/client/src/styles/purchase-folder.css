@@ -33,11 +33,15 @@
   padding: 20px;
 }
 
+.top-container {
+  padding-top: 0px;
+}
+
 .purchase {
   display: flex;
   flex-direction: column;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 15px;
   max-width: 300px;
 }
 

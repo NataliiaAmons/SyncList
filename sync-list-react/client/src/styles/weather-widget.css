@@ -8,7 +8,7 @@
   margin-left: 100px;
 }
 
-.widget-title {
+#widget-title {
   text-align: center;
   margin-bottom: 15px;
 }
@@ -49,6 +49,7 @@
   padding: 5px 7px;
   width: 100%;
   font-size: 18px;
+  margin: 0px;
 }
 
 .city-submit-button:hover,

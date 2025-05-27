@@ -10,9 +10,7 @@ export default function PurchaseCard({ purchase }) {
       <div class="purchase bg-light border-gray shadow-light-gray-corner">
         <p class="purchase-name">{purchase.name}</p>
         <p class="purchase-members">
-          {purchase.members.length === 1
-            ? `1 member`
-            : `${purchase.members.length} members`}
+          {purchase.members === 1 ? `1 member` : `${purchase.members} members`}
         </p>
         <p class="purchase-deadline text-accent">
           <span class="deadline-label">Deadline: </span>

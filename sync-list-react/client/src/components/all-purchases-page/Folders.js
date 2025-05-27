@@ -16,13 +16,6 @@ function Folders() {
 
   const [loading, setLoading] = useState(true);
 
-  /*
-  const [searchParams] = useParams();
-  const user = searchParams.get("user_id");
-
-  const user_id = new URLSearchParams({ user }).toString();
-  */
-
   const { user_id } = useParams();
   const user = user_id;
   console.log(user);
@@ -58,7 +51,7 @@ function Folders() {
               <div className="folders-container">
                 {/* Without folders*/}
                 <div className="purchase-folder">
-                  <div className="purchases-container">
+                  <div className="purchases-container top-container">
                     {withoutFolder.map((purchase) => (
                       <Link to={`/${user}/purchase/${purchase.id_purchase}`}>
                         <PurchaseCard purchase={purchase} />

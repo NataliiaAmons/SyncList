@@ -33,6 +33,9 @@ app.use(themeRoutes);
 const foldersRoutes = require("./routes/folders");
 app.use(foldersRoutes);
 
+const authRoutes = require("./routes/authentif");
+app.use(authRoutes);
+
 app.get("/", (req, res) => {
   res.json({ message: `Connected to server on port ${PORT}` });
 });
