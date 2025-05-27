@@ -51,7 +51,8 @@ async function getPurchaseUserItems(purchase, user) {
       SELECT * FROM items i
       LEFT JOIN users u 
       ON u.id_user = i.id_claimed_by
-      WHERE id_purchase = $1 AND id_claimed_by = $2`,
+      WHERE id_purchase = $1 AND id_claimed_by = $2
+      ORDER BY (completed IS NOT false)`,
       [purchase, user]
     );
     const items = result.rows;

@@ -7,6 +7,8 @@ const db = require("../config/database.js");
 
 const router = express.Router();
 
+router.use(express.json());
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const dir = "./uploads";
@@ -62,6 +64,81 @@ router.patch("/edit-item", upload.single("newImage"), async (req, res) => {
         WHERE id_item = $4;
       `;
     var values = [name, cleanNotes, finalImage, item_id];
+
+    console.log("QUERY:", query);
+    console.log("VALUES:", values);
+
+    const { rows } = await db.query(query, values);
+
+    res.json({ success: true, item: rows[0] });
+  } catch (err) {
+    console.error("Database error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.patch("/claim-item", async (req, res) => {
+  try {
+    console.log("BODY:", req.body);
+
+    const { item_id, user_id } = req.body;
+
+    const query = `
+      UPDATE items
+      SET id_claimed_by = $1
+      WHERE id_item = $2
+    `;
+    const values = [user_id, item_id];
+
+    console.log("QUERY:", query);
+    console.log("VALUES:", values);
+
+    const { rows } = await db.query(query, values);
+
+    res.json({ success: true, item: rows[0] });
+  } catch (err) {
+    console.error("Database error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.patch("/drop-item", async (req, res) => {
+  try {
+    console.log("BODY:", req.body);
+
+    const { item_id } = req.body;
+
+    const query = `
+      UPDATE items
+      SET id_claimed_by = NULL
+      WHERE id_item = $1
+    `;
+    const values = [item_id];
+
+    console.log("QUERY:", query);
+    console.log("VALUES:", values);
+
+    const { rows } = await db.query(query, values);
+
+    res.json({ success: true, item: rows[0] });
+  } catch (err) {
+    console.error("Database error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.patch("/complete-item", async (req, res) => {
+  try {
+    console.log("BODY:", req.body);
+
+    const { item_id } = req.body;
+
+    const query = `
+      UPDATE items
+      SET completed = true
+      WHERE id_item = $1
+    `;
+    const values = [item_id];
 
     console.log("QUERY:", query);
     console.log("VALUES:", values);

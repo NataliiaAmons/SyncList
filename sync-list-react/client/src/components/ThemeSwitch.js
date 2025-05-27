@@ -15,15 +15,15 @@ export default function ThemeSwitch({ initialTheme }) {
   }, [theme]);
 
   return (
-    <div class="theme-switch-container">
-      <i class="fa-regular fa-sun"></i>
+    <div className="theme-switch-container">
+      <i className="fa-regular fa-sun"></i>
       <form
         id="theme-switch"
         method="POST"
         action="http://localhost:5000/toggle-theme"
       >
         <input type="hidden" name="redirect" value={window.location.href} />
-        <label class="switch">
+        <label className="switch">
           <input
             type="checkbox"
             name="theme"
@@ -33,10 +33,10 @@ export default function ThemeSwitch({ initialTheme }) {
               document.getElementById("theme-switch").submit();
             }}
           />
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
       </form>
-      <i class="fa-regular fa-moon"></i>
+      <i className="fa-regular fa-moon"></i>
     </div>
   );
 }

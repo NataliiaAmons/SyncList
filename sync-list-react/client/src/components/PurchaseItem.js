@@ -1,16 +1,81 @@
 import React, { useState } from "react";
-
 import EditItemForm from "../components/EditItemForm";
 
 export default function PurchaseItem({ item, user_id }) {
-  const [isChecked] = useState(
-    item.id_claimed_by === Number(user_id) && item.completed
-  );
+  const [isChecked, setIsChecked] = useState(false);
+
+  const [unclaim, setUnclaim] = useState(false);
 
   const [seenEditItemForm, setSeenEditItemForm] = useState(false);
   function toggleEditItemForm() {
     setSeenEditItemForm(!seenEditItemForm);
   }
+
+  const handleCheckItem = async (e) => {
+    setIsChecked(!isChecked);
+
+    try {
+      let res;
+
+      if (item.id_claimed_by !== Number(user_id)) {
+        const data = {
+          item_id: item.id_item,
+          user_id: user_id,
+        };
+        console.log(data);
+
+        res = await fetch("http://localhost:5000/claim-item", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+      } else {
+        const data = {
+          item_id: item.id_item,
+        };
+        console.log(data);
+
+        res = await fetch("http://localhost:5000/complete-item", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+      }
+
+      const result = await res.text();
+      console.log(result);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleUnclaimItem = async (e) => {
+    setUnclaim(!unclaim);
+
+    try {
+      const data = {
+        item_id: item.id_item,
+      };
+      console.log(data);
+
+      const res = await fetch("http://localhost:5000/drop-item", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.text();
+      console.log(result);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   if (item) {
     return (
@@ -31,12 +96,16 @@ export default function PurchaseItem({ item, user_id }) {
             id="task-checkbox"
             name="task-checkbox"
             checked={isChecked}
+            onChange={handleCheckItem}
             disabled={
               // disbled and transparent if claimed by other user
+              // or completed by current user
               !(
                 item.id_claimed_by == null ||
                 item.id_claimed_by === Number(user_id)
-              )
+              ) ||
+              (item.id_claimed_by === Number(user_id) &&
+                item.completed === true)
             }
           />
           <label htmlFor="task-checkbox">{item.name}</label>
@@ -81,6 +150,15 @@ export default function PurchaseItem({ item, user_id }) {
             id="delete-icon"
           ></i>
         </div>
+        {item.id_claimed_by === Number(user_id) && (
+          <button
+            type="button"
+            className="unclaim-button bg-secondary"
+            onClick={handleUnclaimItem}
+          >
+            Drop
+          </button>
+        )}
       </li>
     );
   }

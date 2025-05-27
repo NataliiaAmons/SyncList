@@ -23,7 +23,7 @@ export default function AddItemForm({ toggleForm, purchase_id }) {
 
     if (!name.trim()) {
       alert("Please enter a product name.");
-      return; // stop the function here
+      return;
     }
 
     try {
