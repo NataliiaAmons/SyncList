@@ -4,7 +4,7 @@ import EditItemForm from "../components/EditItemForm";
 export default function PurchaseItem({ item, user_id }) {
   const [isChecked, setIsChecked] = useState(false);
 
-  const [unclaim, setUnclaim] = useState(false);
+  const [drop, setDrop] = useState(false);
 
   const [seenEditItemForm, setSeenEditItemForm] = useState(false);
   function toggleEditItemForm() {
@@ -53,8 +53,8 @@ export default function PurchaseItem({ item, user_id }) {
     }
   };
 
-  const handleUnclaimItem = async (e) => {
-    setUnclaim(!unclaim);
+  const handleDropItem = async (e) => {
+    setDrop(!drop);
 
     try {
       const data = {
@@ -64,6 +64,28 @@ export default function PurchaseItem({ item, user_id }) {
 
       const res = await fetch("http://localhost:5000/drop-item", {
         method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.text();
+      console.log(result);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDeleteItem = async (e) => {
+    try {
+      const data = {
+        item_id: item.id_item,
+      };
+      console.log(data);
+
+      const res = await fetch("http://localhost:5000/delete-item", {
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
@@ -110,7 +132,6 @@ export default function PurchaseItem({ item, user_id }) {
           />
           <label htmlFor="task-checkbox">{item.name}</label>
         </div>
-
         {item.username ? (
           <div className="claimed-by-info">
             <img
@@ -121,7 +142,6 @@ export default function PurchaseItem({ item, user_id }) {
             <span>{item.username}</span>
           </div>
         ) : null}
-
         {item.image ? (
           <img
             className="li-picture"
@@ -129,9 +149,7 @@ export default function PurchaseItem({ item, user_id }) {
             alt="item"
           />
         ) : null}
-
         <p className="li-notes">{item.notes}</p>
-
         {item.completed && (
           <i className="done-checkmark text-green fa-solid fa-check"></i>
         )}
@@ -148,13 +166,14 @@ export default function PurchaseItem({ item, user_id }) {
           <i
             className="fa-solid fa-trash text-dark manipulate-icon"
             id="delete-icon"
+            onClick={handleDeleteItem}
           ></i>
         </div>
-        {item.id_claimed_by === Number(user_id) && (
+        {item.id_claimed_by === Number(user_id) && item.completed !== true && (
           <button
             type="button"
             className="unclaim-button bg-secondary"
-            onClick={handleUnclaimItem}
+            onClick={handleDropItem}
           >
             Drop
           </button>

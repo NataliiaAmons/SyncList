@@ -152,4 +152,28 @@ router.patch("/complete-item", async (req, res) => {
   }
 });
 
+router.delete("/delete-item", async (req, res) => {
+  try {
+    console.log("BODY:", req.body);
+
+    const { item_id } = req.body;
+
+    const query = `
+      DELETE FROM items 
+      WHERE id_item = $1;
+    `;
+    const values = [item_id];
+
+    console.log("QUERY:", query);
+    console.log("VALUES:", values);
+
+    await db.query(query, values);
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Database error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 module.exports = router;
