@@ -10,9 +10,13 @@
 
 .widget-title {
   text-align: center;
+  margin-bottom: 15px;
+}
+
+.widget-title p,
+.widget-title i {
   font-size: 35px;
   font-weight: 600;
-  margin-bottom: 15px;
 }
 
 /* Forms and buttons */
@@ -23,23 +27,36 @@
   gap: 10px;
 }
 
-.city-input {
+#city-input {
   flex: 3;
   padding: 0 20px;
+  display: inline-block;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 23px;
+  color: var(--dark-color);
+  font-weight: 500;
 }
 
-button {
+#city-input::placeholder {
+  color: var(--dark-gray-color);
+  font-weight: 400;
+}
+
+.city-submit-button,
+.use-location-button {
   flex: 2;
-  padding: 5px 0px;
+  padding: 5px 7px;
   width: 100%;
   font-size: 18px;
 }
 
-button:hover {
+.city-submit-button:hover,
+.use-location-button:hover {
   opacity: 0.8;
 }
 
-button:disabled {
+.city-submit-button:disabled .use-location-button:disabled {
   opacity: 0.6;
 }
 
@@ -143,4 +160,36 @@ button:disabled {
 
 .one-weekday {
   font-weight: 700;
+}
+
+.weather-widget {
+  text-align: center;
+  align-content: center;
+  padding: 20px;
+}
+
+button {
+  padding: 10px 0px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: opacity 0.15s;
+}
+
+button:hover {
+  opacity: 0.5;
+}
+
+button:active {
+  opacity: 0.3;
+}
+
+button:disabled {
+  opacity: 0.3;
+}
+button:disabled:hover {
+  cursor: not-allowed;
 }

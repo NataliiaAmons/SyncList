@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: flex-start;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 10px;
+  justify-content: space-between;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.folders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.purchase-folder {
+  font-size: 100px;
+}
+
+.folder-name {
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.purchases-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 20px;
+}
+
+.purchase {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 300px;
+}
+
+.purchase-name {
+  flex: 1;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.purchase-members {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.purchase-deadline {
+  text-align: end;
+  font-weight: 500;
+  align-self: end;
+}
+
+.deadline-label {
+  text-align: start;
+  font-size: 20px;
+  font-weight: 400;
+}

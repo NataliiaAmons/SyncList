@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState, useForm } from "react";
+import "../styles/global.css";
+import "../styles/color-scheme.css";
+import "../styles/weather-widget.css";
 
 export default function Weather() {
   const [openWeather, setWeather] = useState({});
@@ -161,7 +164,8 @@ export default function Weather() {
           }}
         >
           <input
-            className="city-input"
+            className="city-input bg-light"
+            id="city-input"
             type="text"
             placeholder="City"
             value={inputCity}

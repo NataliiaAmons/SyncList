@@ -30,6 +30,9 @@ app.use(uploadRoutes);
 const themeRoutes = require("./routes/theme");
 app.use(themeRoutes);
 
+const foldersRoutes = require("./routes/folders");
+app.use(foldersRoutes);
+
 app.get("/", (req, res) => {
   res.json({ message: `Connected to server on port ${PORT}` });
 });

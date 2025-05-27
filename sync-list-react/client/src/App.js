@@ -7,9 +7,10 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Weather from "./components/Weather";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Purchase from "./pages/Purchase";
 import ThemeManager from "./components/ThemeManager";
+import Folders from "./pages/Folders";
 
 function App() {
   const [data, setData] = useState();
@@ -47,6 +48,15 @@ function App() {
               </div>
             }
           />
+        </Routes>
+      </Router>
+      <Router>
+        <div>
+          <Link to="/folders?user=1">View User 1's Folders</Link>
+        </div>
+
+        <Routes>
+          <Route path="/folders" element={<Folders />} />
         </Routes>
       </Router>
     </>
