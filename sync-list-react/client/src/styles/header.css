@@ -74,12 +74,15 @@
   left: 65px;
   display: flex;
   align-items: center;
+  text-align: center;
   gap: 7px;
   padding-top: 3px;
 }
 
-.theme-switch-container i {
-  padding-top: 2px;
+.theme-switch-container i,
+.theme-switch-container form {
+  display: flex;
+  align-items: center;
 }
 
 .switch {
