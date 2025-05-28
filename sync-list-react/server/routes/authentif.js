@@ -40,12 +40,16 @@ router.post("/signup", upload.none(), async (req, res) => {
     const result = await db.query(
       `
       INSERT INTO users (first_name, last_name, username, email, password)
-      VALUES
-      ($1, $2, $3, $4, $5)`,
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING id_user`,
       [first_name, last_name, username, email, hashedPassword]
     );
+    const userId = result.rows[0].id_user;
 
-    return res.status(201).json({ success: true, message: "User created" });
+    req.session.userId = userId;
+    return res
+      .status(201)
+      .json({ success: true, message: "User created", userId: userId });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ success: false, message: "Server error" });
@@ -77,7 +81,7 @@ router.post("/login", upload.none(), async (req, res) => {
     if (result.rows.length === 0) {
       return res
         .status(400)
-        .json({ success: false, message: "User not found" });
+        .json({ success: false, message: "Wrong email or password" });
     }
 
     const row = result.rows[0];
@@ -86,9 +90,12 @@ router.post("/login", upload.none(), async (req, res) => {
     console.log("row.password: ", row.password);
 
     if (await bcrypt.compare(password, row.password)) {
-      return res
-        .status(200)
-        .json({ success: true, message: "Logged in successfully" });
+      req.session.userId = row.id_user;
+      return res.status(200).json({
+        success: true,
+        message: "Logged in successfully",
+        userId: row.id_user,
+      });
     } else {
       return res
         .status(401)
@@ -97,6 +104,31 @@ router.post("/login", upload.none(), async (req, res) => {
   } catch (err) {
     console.error(err);
     return res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+router.get("/:user_id/user-info", async (req, res) => {
+  try {
+    const { user_id } = req.params;
+    console.log(req.session.userId);
+
+    const result = await db.query(
+      `
+      SELECT * FROM users
+        WHERE id_user = $1`,
+      [user_id]
+    );
+
+    if (result.rows.length === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
   }
 });
 

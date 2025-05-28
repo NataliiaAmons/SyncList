@@ -1,10 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/sign-up-and-log-in.css";
 
 export default function LogInForm() {
+  const [errMessage, setErrMessage] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    try {
+      const res = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        body: formData,
+        credentials: "include",
+      });
+      console.log(res);
+      const json = await res.json();
+
+      if (!res.ok) {
+        setErrMessage(json.message);
+      } else {
+        // on success
+        navigate(`/${json.userId}/folders`);
+      }
+    } catch (err) {
+      console.error(err);
+      setErrMessage("Network error, please try again.");
+    }
+  };
   return (
     <form
+      onSubmit={handleSubmit}
       className="form-container  form-fields-flex log-in-flex-gap bg-light border-gray shadow-neutral-corner"
       id="log-in-form"
     >
@@ -19,7 +48,7 @@ export default function LogInForm() {
           type="text"
           className="border-gray text-dark"
           id="email-or-usern"
-          name="email-or-usern"
+          name="email"
           placeholder="Email or username"
           required
         />
@@ -30,7 +59,7 @@ export default function LogInForm() {
           type="password"
           className="border-gray text-dark"
           id="pass"
-          name="pass"
+          name="password"
           placeholder="Password"
           required
         />
@@ -50,15 +79,15 @@ export default function LogInForm() {
         <input type="checkbox" checked="checked" name="remember" /> Remember me
       </label>
 
-      <p id="error" className="hidden error text-accent">
-        Wrong email or password
+      <p id="error" className="error error-center text-accent">
+        {errMessage}
       </p>
 
       <button
         className="bg-primary text-light"
         id="submit-btn"
         type="submit"
-        disabled
+        //disabled
       >
         Log in
       </button>

@@ -146,6 +146,9 @@ button:disabled:hover {
   font-weight: 500;
   text-wrap: wrap;
 }
+.error-center {
+  text-align: center;
+}
 
 .container div {
   text-align: start;

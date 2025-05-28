@@ -1,5 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
+//const db = require("./config/database.js");
 const cors = require("cors");
 const path = require("path");
 
@@ -9,7 +11,24 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors());
+app.use(
+  session({
+    //store: new (require("connect-pg-simple")(session))({
+    //  pool: db,
+    //  tableName: "user_sessions",
+    //}),
+    secret: "yourSecretKeyHere",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: true }));
