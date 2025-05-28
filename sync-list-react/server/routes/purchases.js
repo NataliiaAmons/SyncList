@@ -82,29 +82,66 @@ async function getPurchaseOtherItems(purchase, user) {
   }
 }
 
+async function checkIfAllowedPurchase(purchase, user) {
+  try {
+    const result = await db.query(
+      `
+      SELECT *
+      FROM purchases p
+      JOIN members_in_purchases mip 
+        ON p.id_purchase = mip.id_purchase
+      WHERE p.id_purchase = $1  
+      AND (p.id_owner = $2 OR mip.id_user = $2)`,
+      [purchase, user]
+    );
+    return result.rows.length > 0;
+  } catch (err) {
+    console.error("Database error:", err);
+    throw err;
+  }
+}
+
 router.get("/:user_id/purchase/:purchase_id", async (req, res) => {
   try {
+    console.log("SESSION USERID: ", req.session.userId);
+
     const { user_id, purchase_id } = req.params;
 
-    console.log("User:", user_id);
-    console.log("Purchase:", purchase_id);
+    const isAuthorised = req.session.userId === Number(user_id);
+    console.log("USER: ", isAuthorised);
+    console.log(isAuthorised);
+    if (isAuthorised) {
+      const isAllowedPurchase = await checkIfAllowedPurchase(
+        purchase_id,
+        user_id
+      );
+      console.log("PURCHASE: ", isAllowedPurchase);
+      if (isAllowedPurchase) {
+        console.log("User:", user_id);
+        console.log("Purchase:", purchase_id);
 
-    const purchaseInfo = await getPurchaseInfo(purchase_id);
-    const purchaseMembers = await getPurchaseMembers(purchase_id);
-    const userItems = await getPurchaseUserItems(purchase_id, user_id);
-    const otherItems = await getPurchaseOtherItems(purchase_id, user_id);
+        const purchaseInfo = await getPurchaseInfo(purchase_id);
+        const purchaseMembers = await getPurchaseMembers(purchase_id);
+        const userItems = await getPurchaseUserItems(purchase_id, user_id);
+        const otherItems = await getPurchaseOtherItems(purchase_id, user_id);
 
-    console.log(purchaseInfo, purchaseMembers, userItems, otherItems);
+        console.log(purchaseInfo, purchaseMembers, userItems, otherItems);
 
-    res.json({
-      info: purchaseInfo,
-      members: purchaseMembers,
-      userItems: userItems,
-      otherItems: otherItems,
-    });
+        res.json({
+          info: purchaseInfo,
+          members: purchaseMembers,
+          userItems: userItems,
+          otherItems: otherItems,
+        });
+      } else {
+        return res.status(403).json({ success: false, message: "Forbidden" });
+      }
+    } else {
+      return res.status(403).json({ success: false, message: "Forbidden" });
+    }
   } catch (err) {
     console.error(err);
-    res.status(500).send("Server error");
+    res.status(500).json({ success: false, message: "Server error" });
   }
 });
 

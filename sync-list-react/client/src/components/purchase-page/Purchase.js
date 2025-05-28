@@ -18,6 +18,7 @@ function Purchase() {
   const [otherItems, setOtherItems] = useState([]);
 
   const [loading, setLoading] = useState(true);
+  const [forbidden, setForbidden] = useState(false);
 
   const { user_id, purchase_id } = useParams();
   const user = user_id;
@@ -31,9 +32,25 @@ function Purchase() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/${user}/purchase/${id}`)
-      .then((res) => res.json())
+    fetch(`http://localhost:5000/${user}/purchase/${id}`, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          const errorData = await res.json();
+          console.log(errorData);
+          console.error("Access error:", errorData.message);
+          setForbidden(true);
+          return;
+        }
+        return res.json();
+      })
       .then((response) => {
+        if (!response) {
+          setLoading(false);
+          return;
+        }
         console.log(response);
         setInfo(response.info);
         setMembers(response.members);
@@ -51,6 +68,8 @@ function Purchase() {
     <div>
       {loading ? (
         <p>Loading...</p>
+      ) : forbidden ? (
+        <div>403 Forbidden</div>
       ) : (
         <div className="body bg-neutral">
           <Header></Header>

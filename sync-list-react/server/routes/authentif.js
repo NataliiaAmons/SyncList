@@ -91,10 +91,21 @@ router.post("/login", upload.none(), async (req, res) => {
 
     if (await bcrypt.compare(password, row.password)) {
       req.session.userId = row.id_user;
-      return res.status(200).json({
-        success: true,
-        message: "Logged in successfully",
-        userId: row.id_user,
+
+      req.session.save((err) => {
+        if (err) {
+          console.error("Session save error:", err);
+          return res
+            .status(500)
+            .json({ success: false, message: "Session error" });
+        }
+
+        // Session saved, respond once
+        return res.status(200).json({
+          success: true,
+          message: "Logged in successfully",
+          userId: row.id_user,
+        });
       });
     } else {
       return res
@@ -110,7 +121,7 @@ router.post("/login", upload.none(), async (req, res) => {
 router.get("/:user_id/user-info", async (req, res) => {
   try {
     const { user_id } = req.params;
-    console.log(req.session.userId);
+    console.log("Sesion userId: ", req.params);
 
     const result = await db.query(
       `
@@ -118,7 +129,7 @@ router.get("/:user_id/user-info", async (req, res) => {
         WHERE id_user = $1`,
       [user_id]
     );
-
+    console.log("QUERY: ", result.rows);
     if (result.rows.length === 0) {
       return res
         .status(404)

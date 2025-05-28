@@ -4,8 +4,20 @@ const session = require("express-session");
 //const db = require("./config/database.js");
 const cors = require("cors");
 const path = require("path");
-
 require("dotenv").config();
+const Pool = require("pg").Pool;
+
+const db_user = process.env.DB_USER;
+const db_pass = process.env.DB_PASS;
+const db_name = process.env.DB_NAME;
+
+const pool = new Pool({
+  user: db_user,
+  password: db_pass,
+  host: "localhost",
+  port: 5432,
+  database: db_name,
+});
 
 const app = express();
 
@@ -13,10 +25,11 @@ app.use(express.json());
 
 app.use(
   session({
-    //store: new (require("connect-pg-simple")(session))({
-    //  pool: db,
-    //  tableName: "user_sessions",
-    //}),
+    store: new (require("connect-pg-simple")(session))({
+      pool: pool,
+      tableName: "user_sessions",
+      createTableIfMissing: true,
+    }),
     secret: "yourSecretKeyHere",
     resave: false,
     saveUninitialized: false,

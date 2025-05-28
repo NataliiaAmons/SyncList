@@ -15,6 +15,7 @@ function Folders() {
   const [withoutFolder, setWithoutFolder] = useState([]);
 
   const [loading, setLoading] = useState(true);
+  const [forbidden, setForbidden] = useState(false);
 
   const { user_id } = useParams();
   const user = user_id;
@@ -22,9 +23,25 @@ function Folders() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/${user}/folders`)
-      .then((res) => res.json())
+    fetch(`http://localhost:5000/${user}/folders`, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          const errorData = await res.json();
+          console.log(errorData);
+          console.error("Access error:", errorData.message);
+          setForbidden(true);
+          return;
+        }
+        return res.json();
+      })
       .then((response) => {
+        if (!response) {
+          setLoading(false);
+          return;
+        }
         console.log(response);
         setFolders(response.foldersInfo);
         setWithoutFolder(response.withoutFolder);
@@ -42,6 +59,8 @@ function Folders() {
     <div>
       {loading ? (
         <p>Loading...</p>
+      ) : forbidden ? (
+        <div>403 Forbidden</div>
       ) : (
         <div className="body bg-neutral">
           <Header></Header>
