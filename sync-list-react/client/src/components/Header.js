@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import ThemeSwitch from "./theme/ThemeSwitch";
 import { useParams, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function Header() {
   const [userInfo, setUserInfo] = useState(true);
   const [loading, setLoading] = useState(true);
-  const { user_id } = useParams();
-  const user = user_id;
+
+  const location = useLocation();
+  const myData = location.state;
+
+  const user_id = myData?.user_id;
+
+  console.log("user_id", user_id);
 
   useEffect(() => {
     setLoading(true);
@@ -20,7 +26,7 @@ export default function Header() {
       .catch((error) => {
         console.error(error);
       });
-  }, [user]);
+  }, []);
 
   return (
     <div>
@@ -33,7 +39,7 @@ export default function Header() {
           </div>
 
           <div className="middle-section">
-            <Link to={`/${user_id}/folders`} className="hover-light">
+            <Link to={`/folders`} className="hover-light">
               <p className="header-link text-dark">All lists</p>
             </Link>
             <p className="header-link text-dark">Claimed tasks</p>

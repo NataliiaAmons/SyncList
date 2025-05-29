@@ -24,7 +24,8 @@ export default function LogInForm() {
         setErrMessage(json.message);
       } else {
         // on success
-        navigate(`/${json.userId}/folders`);
+        const myData = { user_id: json.userId };
+        navigate("/folders", { state: myData });
       }
     } catch (err) {
       console.error(err);

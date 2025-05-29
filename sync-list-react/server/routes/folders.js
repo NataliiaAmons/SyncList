@@ -106,29 +106,21 @@ async function getFilledFolders(user) {
   return filledFolders;
 }
 
-router.get("/:user_id/folders", async (req, res) => {
+router.get("/folders", async (req, res) => {
   try {
-    console.log("SESSION USERID: ", req.session.userId);
+    const user_id = req.session.userId;
 
-    const { user_id } = req.params;
-    console.log(user_id);
+    console.log("SESSION USERID: ", user_id);
 
-    const isAuthorised = req.session.userId === Number(user_id);
-    console.log("USER: ", isAuthorised);
-    console.log(isAuthorised);
-    if (isAuthorised) {
-      const withoutFolder = await getNoFolderPurchaseInfo(user_id);
-      const foldersInfo = await getFilledFolders(user_id);
+    const withoutFolder = await getNoFolderPurchaseInfo(user_id);
+    const foldersInfo = await getFilledFolders(user_id);
 
-      console.log(withoutFolder, foldersInfo);
+    //console.log(withoutFolder, foldersInfo);
 
-      res.json({
-        withoutFolder: withoutFolder,
-        foldersInfo: foldersInfo,
-      });
-    } else {
-      return res.status(403).json({ success: false, message: "Forbidden" });
-    }
+    res.json({
+      withoutFolder: withoutFolder,
+      foldersInfo: foldersInfo,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");

@@ -32,7 +32,7 @@ function Purchase() {
 
   const fetchData = () => {
     setLoading(true);
-    fetch(`http://localhost:5000/${user}/purchase/${id}`, {
+    fetch(`http://localhost:5000/purchase/${id}`, {
       method: "GET",
       credentials: "include",
     })

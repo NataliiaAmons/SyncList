@@ -120,8 +120,15 @@ router.post("/login", upload.none(), async (req, res) => {
 
 router.get("/:user_id/user-info", async (req, res) => {
   try {
-    const { user_id } = req.params;
-    console.log("Sesion userId: ", req.params);
+    let user_id = req.params.user_id;
+    console.log("USERID: ", user_id);
+    if (!user_id || user_id === "undefined") {
+      user_id = req.session.userId;
+    }
+    console.log("params userId: ", req.params);
+    console.log("session: ", req.session);
+    console.log("session userId: ", req.session.userId);
+    console.log("USERID: ", user_id);
 
     const result = await db.query(
       `

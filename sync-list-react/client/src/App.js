@@ -16,8 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LogIn />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/:user_id/folders" element={<AllPurchases />} />
-        <Route path="/:user_id/purchase/:purchase_id" element={<Purchase />} />
+        <Route path="/folders" element={<AllPurchases />} />
+        <Route path="/purchase/:purchase_id" element={<Purchase />} />
         <Route path="*" element={<LogIn />} />
       </Routes>
     </BrowserRouter>

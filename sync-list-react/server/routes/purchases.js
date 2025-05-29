@@ -101,41 +101,35 @@ async function checkIfAllowedPurchase(purchase, user) {
   }
 }
 
-router.get("/:user_id/purchase/:purchase_id", async (req, res) => {
+router.get("/purchase/:purchase_id", async (req, res) => {
   try {
+    const user_id = req.session.userId;
     console.log("SESSION USERID: ", req.session.userId);
 
-    const { user_id, purchase_id } = req.params;
+    const { purchase_id } = req.params;
 
-    const isAuthorised = req.session.userId === Number(user_id);
-    console.log("USER: ", isAuthorised);
-    console.log(isAuthorised);
-    if (isAuthorised) {
-      const isAllowedPurchase = await checkIfAllowedPurchase(
-        purchase_id,
-        user_id
-      );
-      console.log("PURCHASE: ", isAllowedPurchase);
-      if (isAllowedPurchase) {
-        console.log("User:", user_id);
-        console.log("Purchase:", purchase_id);
+    const isAllowedPurchase = await checkIfAllowedPurchase(
+      purchase_id,
+      user_id
+    );
+    console.log("PURCHASE: ", isAllowedPurchase);
+    if (isAllowedPurchase) {
+      console.log("User:", user_id);
+      console.log("Purchase:", purchase_id);
 
-        const purchaseInfo = await getPurchaseInfo(purchase_id);
-        const purchaseMembers = await getPurchaseMembers(purchase_id);
-        const userItems = await getPurchaseUserItems(purchase_id, user_id);
-        const otherItems = await getPurchaseOtherItems(purchase_id, user_id);
+      const purchaseInfo = await getPurchaseInfo(purchase_id);
+      const purchaseMembers = await getPurchaseMembers(purchase_id);
+      const userItems = await getPurchaseUserItems(purchase_id, user_id);
+      const otherItems = await getPurchaseOtherItems(purchase_id, user_id);
 
-        console.log(purchaseInfo, purchaseMembers, userItems, otherItems);
+      //console.log(purchaseInfo, purchaseMembers, userItems, otherItems);
 
-        res.json({
-          info: purchaseInfo,
-          members: purchaseMembers,
-          userItems: userItems,
-          otherItems: otherItems,
-        });
-      } else {
-        return res.status(403).json({ success: false, message: "Forbidden" });
-      }
+      res.json({
+        info: purchaseInfo,
+        members: purchaseMembers,
+        userItems: userItems,
+        otherItems: otherItems,
+      });
     } else {
       return res.status(403).json({ success: false, message: "Forbidden" });
     }

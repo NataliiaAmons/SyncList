@@ -4,9 +4,6 @@ import "../../styles/color-scheme.css";
 import "../../styles/header.css";
 import "../../styles/footer.css";
 import "../../styles/weather-widget.css";
-import Header from "../Header";
-import Footer from "../Footer";
-import Weather from "./Weather";
 import PurchaseCard from "./PurchaseCard";
 import { useParams, Link } from "react-router-dom";
 
@@ -24,7 +21,7 @@ function Folders() {
   useEffect(() => {
     const fetchData = () => {
       setLoading(true);
-      fetch(`http://localhost:5000/${user}/folders`, {
+      fetch(`http://localhost:5000/folders`, {
         method: "GET",
         credentials: "include",
       })
@@ -74,7 +71,7 @@ function Folders() {
           <div className="purchase-folder">
             <div className="purchases-container top-container">
               {withoutFolder.map((purchase) => (
-                <Link to={`/${user}/purchase/${purchase.id_purchase}`}>
+                <Link to={`/purchase/${purchase.id_purchase}`}>
                   <PurchaseCard purchase={purchase} />
                 </Link>
               ))}
@@ -86,7 +83,7 @@ function Folders() {
               <p className="folder-name border-bottom-gray">{folder.name}</p>
               <div className="purchases-container">
                 {folder.list.map((purchase) => (
-                  <Link to={`/${user}/purchase/${purchase.id_purchase}`}>
+                  <Link to={`/purchase/${purchase.id_purchase}`}>
                     <PurchaseCard purchase={purchase} />
                   </Link>
                 ))}
