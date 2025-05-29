@@ -7,7 +7,7 @@ export default function PurchaseCard({ purchase }) {
 
   if (purchase) {
     return (
-      <div class="purchase bg-light border-gray shadow-light-gray-corner">
+      <div class="purchase bg-light border-gray shadow-light-gray-corner hover-neutral">
         <p class="purchase-name">{purchase.name}</p>
         <p class="purchase-members">
           {purchase.members === 1 ? `1 member` : `${purchase.members} members`}

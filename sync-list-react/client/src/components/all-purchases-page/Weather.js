@@ -235,7 +235,7 @@ export default function Weather() {
               <div className="next-days">
                 {byDays.slice(1, 5).map((day) => {
                   return (
-                    <div key={day.date} className="one-day">
+                    <div key={day.date} id="one-day">
                       <p className="one-weekday text-secondary">
                         {getWeekday(day.date)}
                       </p>

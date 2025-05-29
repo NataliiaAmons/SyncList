@@ -317,7 +317,8 @@ button:hover {
 
     align-self: start;
     justify-self: center;
-
+    margin-top: 10px;
+    margin-left: 20px;
     line-clamp: 3;
     -webkit-line-clamp: 3;
   }
