@@ -22,37 +22,44 @@ function Folders() {
   console.log(user);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(`http://localhost:5000/${user}/folders`, {
-      method: "GET",
-      credentials: "include",
-    })
-      .then(async (res) => {
-        if (!res.ok) {
-          const errorData = await res.json();
-          console.log(errorData);
-          console.error("Access error:", errorData.message);
-          setForbidden(true);
-          return;
-        }
-        return res.json();
+    const fetchData = () => {
+      setLoading(true);
+      fetch(`http://localhost:5000/${user}/folders`, {
+        method: "GET",
+        credentials: "include",
       })
-      .then((response) => {
-        if (!response) {
+        .then(async (res) => {
+          if (!res.ok) {
+            const errorData = await res.json();
+            console.log(errorData);
+            console.error("Access error:", errorData.message);
+            setForbidden(true);
+            return;
+          }
+          return res.json();
+        })
+        .then((response) => {
+          if (!response) {
+            setLoading(false);
+            return;
+          }
+          console.log(response);
+          setFolders(response.foldersInfo);
+          setWithoutFolder(response.withoutFolder);
           setLoading(false);
-          return;
-        }
-        console.log(response);
-        setFolders(response.foldersInfo);
-        setWithoutFolder(response.withoutFolder);
-        setLoading(false);
 
-        console.log("folders", response.foldersInfo);
-        console.log("Without folder", response.withoutFolder);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+          console.log("folders", response.foldersInfo);
+          console.log("Without folder", response.withoutFolder);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    fetchData();
+
+    //const intervalId = setInterval(fetchData, 5000);
+    //return () => clearInterval(intervalId);
   }, [user]);
 
   return (
@@ -62,43 +69,30 @@ function Folders() {
       ) : forbidden ? (
         <div>403 Forbidden</div>
       ) : (
-        <div className="body bg-neutral">
-          <Header></Header>
-          <div className="content">
-            <div className="container">
-              {/* Folders*/}
-              <div className="folders-container">
-                {/* Without folders*/}
-                <div className="purchase-folder">
-                  <div className="purchases-container top-container">
-                    {withoutFolder.map((purchase) => (
-                      <Link to={`/${user}/purchase/${purchase.id_purchase}`}>
-                        <PurchaseCard purchase={purchase} />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-                {/* Folders*/}
-                {folders.map((folder) => (
-                  <div className="purchase-folder">
-                    <p className="folder-name border-bottom-gray">
-                      {folder.name}
-                    </p>
-                    <div className="purchases-container">
-                      {folder.list.map((purchase) => (
-                        <Link to={`/${user}/purchase/${purchase.id_purchase}`}>
-                          <PurchaseCard purchase={purchase} />
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {/* Weather widget */}
-              <Weather></Weather>
+        <div className="folders-container">
+          {/* Without folders*/}
+          <div className="purchase-folder">
+            <div className="purchases-container top-container">
+              {withoutFolder.map((purchase) => (
+                <Link to={`/${user}/purchase/${purchase.id_purchase}`}>
+                  <PurchaseCard purchase={purchase} />
+                </Link>
+              ))}
             </div>
           </div>
-          <Footer></Footer>
+          {/* Folders*/}
+          {folders.map((folder) => (
+            <div className="purchase-folder">
+              <p className="folder-name border-bottom-gray">{folder.name}</p>
+              <div className="purchases-container">
+                {folder.list.map((purchase) => (
+                  <Link to={`/${user}/purchase/${purchase.id_purchase}`}>
+                    <PurchaseCard purchase={purchase} />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

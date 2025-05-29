@@ -30,7 +30,7 @@ function Purchase() {
     setSeenAddItemForm(!seenAddItemForm);
   }
 
-  useEffect(() => {
+  const fetchData = () => {
     setLoading(true);
     fetch(`http://localhost:5000/${user}/purchase/${id}`, {
       method: "GET",
@@ -62,66 +62,70 @@ function Purchase() {
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  useEffect(() => {
+    fetchData();
+
+    //const intervalId = setInterval(fetchData, 1000);
+    //return () => clearInterval(intervalId);
   }, [user, id]);
 
   return (
     <div>
       {loading ? (
-        <p>Loading...</p>
+        <div className="bg-light"></div>
       ) : forbidden ? (
         <div>403 Forbidden</div>
       ) : (
-        <div className="body bg-neutral">
-          <Header></Header>
-          <div className="content">
-            <PurchaseHeader info={info} members={members}></PurchaseHeader>
-            <div className="purchase-tasks">
-              <ul className="all-tasks">
-                <div className="all-tasks-header bg-secondary border-gray shadow-light-gray-corner">
-                  <span className="list-name text-dark">All products</span>
-                  <button
-                    className="add-product-button bg-support"
-                    onClick={toggleAddItemForm}
-                  >
-                    Add product
-                  </button>
-                  {seenAddItemForm ? (
-                    <AddItemForm
-                      toggleForm={toggleAddItemForm}
-                      purchase_id={id}
-                    />
-                  ) : null}
-                </div>
-                {otherItems.map((item) => {
-                  return (
-                    <PurchaseItem
-                      key={item.id_item}
-                      item={item}
-                      user_id={user}
-                    ></PurchaseItem>
-                  );
-                })}
-              </ul>
-              <ul className="claimed-tasks">
-                <div className="claimed-tasks-header bg-primary border-gray shadow-light-gray-corner">
-                  <span className="list-name text-neutral">
-                    Claimed products
-                  </span>
-                </div>
-                {userItems.map((item) => {
-                  return (
-                    <PurchaseItem
-                      key={item.id_item}
-                      item={item}
-                      user_id={user}
-                      item_id={item.id_item}
-                    ></PurchaseItem>
-                  );
-                })}
-              </ul>
-            </div>
+        <div>
+          <PurchaseHeader info={info} members={members}></PurchaseHeader>
+          <div className="purchase-tasks">
+            <ul className="all-tasks">
+              <div className="all-tasks-header bg-secondary border-gray shadow-light-gray-corner">
+                <span className="list-name text-dark">All products</span>
+                <button
+                  className="add-product-button bg-support"
+                  onClick={toggleAddItemForm}
+                >
+                  Add product
+                </button>
+                {seenAddItemForm ? (
+                  <AddItemForm
+                    toggleForm={toggleAddItemForm}
+                    purchase_id={id}
+                    refresh={fetchData}
+                  />
+                ) : null}
+              </div>
+              {otherItems.map((item) => {
+                return (
+                  <PurchaseItem
+                    key={item.id_item}
+                    item={item}
+                    user_id={user}
+                    refresh={fetchData}
+                  ></PurchaseItem>
+                );
+              })}
+            </ul>
+            <ul className="claimed-tasks">
+              <div className="claimed-tasks-header bg-primary border-gray shadow-light-gray-corner">
+                <span className="list-name text-neutral">Claimed products</span>
+              </div>
+              {userItems.map((item) => {
+                return (
+                  <PurchaseItem
+                    key={item.id_item}
+                    item={item}
+                    user_id={user}
+                    item_id={item.id_item}
+                    refresh={fetchData}
+                  ></PurchaseItem>
+                );
+              })}
+            </ul>
           </div>
-          <Footer></Footer>
         </div>
       )}
     </div>

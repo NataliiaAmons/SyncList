@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/add-product-form.css";
 
-export default function EditItemForm({ toggleForm, item }) {
+export default function EditItemForm({ toggleForm, item, refresh }) {
   const [editedName, setEditedName] = useState("");
   const [editedNotes, setEditedNotes] = useState("");
   const [newImage, setNewImage] = useState(null);
@@ -57,6 +57,7 @@ export default function EditItemForm({ toggleForm, item }) {
 
       const result = await res.text();
       console.log(result);
+      refresh();
     } catch (err) {
       console.error(err);
     }

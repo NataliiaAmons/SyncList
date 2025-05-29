@@ -280,6 +280,7 @@ input[type="checkbox"]:disabled {
 .unclaim-button {
   grid-column: 1 / 2;
   grid-row: 3 / 4;
+  width: auto;
   margin-top: 10px;
   margin-left: 18px;
   padding: 8px 30px;

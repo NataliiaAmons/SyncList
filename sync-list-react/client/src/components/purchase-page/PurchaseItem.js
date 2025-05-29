@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EditItemForm from "./EditItemForm";
 
-export default function PurchaseItem({ item, user_id }) {
+export default function PurchaseItem({ item, user_id, refresh }) {
   const [isChecked, setIsChecked] = useState(false);
 
   const [drop, setDrop] = useState(false);
@@ -48,6 +48,7 @@ export default function PurchaseItem({ item, user_id }) {
 
       const result = await res.text();
       console.log(result);
+      refresh();
     } catch (err) {
       console.error(err);
     }
@@ -72,6 +73,7 @@ export default function PurchaseItem({ item, user_id }) {
 
       const result = await res.text();
       console.log(result);
+      refresh();
     } catch (err) {
       console.error(err);
     }
@@ -94,6 +96,7 @@ export default function PurchaseItem({ item, user_id }) {
 
       const result = await res.text();
       console.log(result);
+      refresh();
     } catch (err) {
       console.error(err);
     }
@@ -160,7 +163,11 @@ export default function PurchaseItem({ item, user_id }) {
             onClick={toggleEditItemForm}
           ></i>
           {seenEditItemForm ? (
-            <EditItemForm toggleForm={toggleEditItemForm} item={item} />
+            <EditItemForm
+              toggleForm={toggleEditItemForm}
+              item={item}
+              refresh={refresh}
+            />
           ) : null}
 
           <i
