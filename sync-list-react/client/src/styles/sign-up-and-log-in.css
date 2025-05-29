@@ -1,0 +1,184 @@
+p,
+label,
+input,
+button,
+h1,
+li {
+  font-family: "Quicksand", sans-serif;
+  font-size: 25px;
+  margin: 0px;
+}
+
+.form-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 70px 50px;
+  border-radius: 15px;
+  max-width: 450px;
+  min-width: 350px;
+}
+
+/* Header with logo*/
+.header {
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+/* Flex element*/
+.form-fields-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-up-flex-gap {
+  gap: 10px;
+}
+
+.log-in-flex-gap {
+  gap: 30px;
+}
+
+/* From name */
+h1 {
+  font-size: 35px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+
+/* Text input fields*/
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 12px 20px;
+  display: inline-block;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 21px;
+}
+
+input::placeholder {
+  color: var(--dark-gray-color);
+}
+
+/* "Remember me" checkbox*/
+.checkbox-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-size: 21px;
+}
+
+/* "Log in" button*/
+button {
+  padding: 10px 0px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: opacity 0.15s;
+}
+
+button:hover {
+  opacity: 0.5;
+}
+
+button:active {
+  opacity: 0.3;
+}
+
+button:disabled {
+  opacity: 0.3;
+}
+button:disabled:hover {
+  cursor: not-allowed;
+}
+
+/*"Sing up" text and link*/
+.sing-up-text {
+  font-size: 19px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.sing-up-text a {
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.sing-up-text a:hover {
+  text-decoration: underline;
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-visibility-icon {
+  position: absolute;
+  font-size: 17px;
+  right: 15px;
+  transition: color 0.15s;
+}
+
+.password-visibility-icon:hover {
+  color: var(--dark-gray-color);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.error {
+  font-size: 17px;
+  font-weight: 500;
+  text-wrap: wrap;
+}
+.error-center {
+  text-align: center;
+}
+
+.container div {
+  text-align: start;
+}
+
+.field-label {
+  font-size: 17px;
+}
+
+#pass-req-list li {
+  font-size: 17px;
+  padding-top: 0px;
+  list-style-type: disc;
+}
+
+#pass-req-list li::before {
+  content: "•";
+  padding-right: 5px;
+  padding-top: 1px;
+}
+
+#pass-req-list {
+  list-style-position: inside;
+  list-style-type: square;
+  padding: 0;
+  padding-left: 10px;
+  margin-bottom: 0;
+  margin-top: 5px;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(3, minmax(0, auto));
+}
