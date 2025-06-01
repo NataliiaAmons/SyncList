@@ -1,10 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef } from "react";
 
 export default function MembersList({ popupRef, members }) {
-  const [popupFor, setPopupFor] = useState(null); // store item id for which popup is open
   const containerRef = useRef();
-
-  // Close popup if clicked outside
 
   return (
     <div

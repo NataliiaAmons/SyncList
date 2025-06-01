@@ -115,8 +115,6 @@ router.get("/folders", async (req, res) => {
     const withoutFolder = await getNoFolderPurchaseInfo(user_id);
     const foldersInfo = await getFilledFolders(user_id);
 
-    //console.log(withoutFolder, foldersInfo);
-
     res.json({
       withoutFolder: withoutFolder,
       foldersInfo: foldersInfo,

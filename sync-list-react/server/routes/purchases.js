@@ -122,13 +122,12 @@ router.get("/purchase/:purchase_id", async (req, res) => {
       const userItems = await getPurchaseUserItems(purchase_id, user_id);
       const otherItems = await getPurchaseOtherItems(purchase_id, user_id);
 
-      //console.log(purchaseInfo, purchaseMembers, userItems, otherItems);
-
       res.json({
         info: purchaseInfo,
         members: purchaseMembers,
         userItems: userItems,
         otherItems: otherItems,
+        user_id: user_id,
       });
     } else {
       return res.status(403).json({ success: false, message: "Forbidden" });

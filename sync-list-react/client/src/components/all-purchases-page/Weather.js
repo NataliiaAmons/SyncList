@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useForm } from "react";
+import React, { useRef, useState } from "react";
 import "../../styles/global.css";
 import "../../styles/color-scheme.css";
 import "../../styles/weather-widget.css";

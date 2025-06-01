@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ThemeSwitch from "./theme/ThemeSwitch";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 export default function Header() {
@@ -16,7 +16,10 @@ export default function Header() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/${user_id}/user-info`)
+    fetch(`http://localhost:5000/${user_id}/user-info`, {
+      method: "GET",
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((response) => {
         console.log(response);

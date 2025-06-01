@@ -4,6 +4,8 @@ import EditItemForm from "./EditItemForm";
 export default function PurchaseItem({ item, user_id, refresh }) {
   const [isChecked, setIsChecked] = useState(false);
 
+  console.log("Header user_id: ", user_id);
+
   const [drop, setDrop] = useState(false);
 
   const [seenEditItemForm, setSeenEditItemForm] = useState(false);
@@ -20,7 +22,6 @@ export default function PurchaseItem({ item, user_id, refresh }) {
       if (item.id_claimed_by !== Number(user_id)) {
         const data = {
           item_id: item.id_item,
-          user_id: user_id,
         };
         console.log(data);
 
@@ -29,6 +30,7 @@ export default function PurchaseItem({ item, user_id, refresh }) {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
           body: JSON.stringify(data),
         });
       } else {

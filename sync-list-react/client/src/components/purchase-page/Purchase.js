@@ -4,8 +4,6 @@ import "../../styles/color-scheme.css";
 import "../../styles/header.css";
 import "../../styles/footer.css";
 import "../../styles/purchase-list.css";
-import Header from "../Header";
-import Footer from "../Footer";
 import PurchaseHeader from "./PurchaseHeader";
 import PurchaseItem from "./PurchaseItem";
 import AddItemForm from "./AddItemForm";
@@ -16,14 +14,15 @@ function Purchase() {
   const [members, setMembers] = useState({});
   const [userItems, setUserItems] = useState([]);
   const [otherItems, setOtherItems] = useState([]);
+  const [userId, setUserId] = useState();
 
   const [loading, setLoading] = useState(true);
   const [forbidden, setForbidden] = useState(false);
 
-  const { user_id, purchase_id } = useParams();
-  const user = user_id;
+  const { purchase_id } = useParams();
+  //const user = user_id;
   const id = purchase_id;
-  console.log(user, id);
+  //console.log(user, id);
 
   const [seenAddItemForm, setSeenAddItemForm] = useState(false);
   function toggleAddItemForm() {
@@ -56,8 +55,10 @@ function Purchase() {
         setMembers(response.members);
         setUserItems(response.userItems);
         setOtherItems(response.otherItems);
+
+        setUserId(response.user_id);
         setLoading(false);
-        console.log(info, members, userItems, otherItems);
+        console.log(info, members, userItems, otherItems, userId);
       })
       .catch((error) => {
         console.error(error);
@@ -66,10 +67,7 @@ function Purchase() {
 
   useEffect(() => {
     fetchData();
-
-    //const intervalId = setInterval(fetchData, 1000);
-    //return () => clearInterval(intervalId);
-  }, [user, id]);
+  }, [userId, id]);
 
   return (
     <div>
@@ -103,7 +101,7 @@ function Purchase() {
                   <PurchaseItem
                     key={item.id_item}
                     item={item}
-                    user_id={user}
+                    user_id={userId}
                     refresh={fetchData}
                   ></PurchaseItem>
                 );
@@ -118,7 +116,7 @@ function Purchase() {
                   <PurchaseItem
                     key={item.id_item}
                     item={item}
-                    user_id={user}
+                    user_id={userId}
                     item_id={item.id_item}
                     refresh={fetchData}
                   ></PurchaseItem>

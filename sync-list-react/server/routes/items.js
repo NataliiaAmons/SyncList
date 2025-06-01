@@ -79,9 +79,11 @@ router.patch("/edit-item", upload.single("newImage"), async (req, res) => {
 
 router.patch("/claim-item", async (req, res) => {
   try {
+    const user_id = req.session.userId;
+    console.log("SESSION USERID: ", req.session.userId);
     console.log("BODY:", req.body);
 
-    const { user_id, item_id } = req.body;
+    const { item_id } = req.body;
 
     const query = `
       UPDATE items
@@ -95,7 +97,7 @@ router.patch("/claim-item", async (req, res) => {
 
     const { rows } = await db.query(query, values);
 
-    res.json({ success: true, item: rows[0] });
+    res.json({ success: true, item: rows[0], user_id: user_id });
   } catch (err) {
     console.error("Database error:", err);
     res.status(500).json({ error: "Internal server error" });
